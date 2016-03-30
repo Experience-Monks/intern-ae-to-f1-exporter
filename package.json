@@ -1,0 +1,28 @@
+{
+  "name": "ae-to-f1",
+  "version": "1.0.0",
+  "description": "This is an After Effects to F1 exporter",
+  "main": "src/index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Mikko Haapoja",
+    "email": "me@mikkoh.com",
+    "url": "https://github.com/mikkoh"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "after,effects,f1,ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mikkoh/ae-to-f1.git"
+  },
+  "homepage": "https://github.com/mikkoh/ae-to-f1",
+  "bugs": {
+    "url": "https://github.com/mikkoh/ae-to-f1/issues"
+  }
+}
