@@ -10,6 +10,7 @@
     "url": "https://github.com/mikkoh"
   },
   "dependencies": {
+    "deep-extend": "^0.4.1",
     "serialize-javascript": "^1.2.0"
   },
   "devDependencies": {},
