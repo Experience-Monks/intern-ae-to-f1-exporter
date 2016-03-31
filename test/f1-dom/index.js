@@ -13,8 +13,8 @@ fs.writeFileSync(path.join(__dirname, 'statesTransitions.js'), statesTransitions
 budo(
   path.join(__dirname, 'frontend.js'),
   {
+    live: true,
     dir: path.join(__dirname, '..', 'ae', '(Footage)', 'Images'),
-    open: true,
     port: 8000
   }
 )
