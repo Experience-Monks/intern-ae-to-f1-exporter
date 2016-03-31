@@ -7,7 +7,7 @@ module.exports = function(layer, isStart) {
   var rVal = {};
   
   Object.keys(PROPERTIES).forEach(function(propertyName) {
-    rVal[ PROPERTIES[ propertyName ] ] = getValueFromProperty(layer.properties.Transform[ propertyName ]);
+    rVal[ PROPERTIES[ propertyName ] ] = getValueFromProperty(layer.properties.Transform[ propertyName ], isStart);
   });
 
   return rVal;
