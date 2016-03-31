@@ -1,4 +1,4 @@
-var getTargetName = require('./getTargetName');
+var getTargetName = require('../util/getTargetName');
 var getAnimationFromLayer = require('./getAnimationFromLayer');
 
 // the purpose of this is to parse out animation details

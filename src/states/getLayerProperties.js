@@ -1,6 +1,6 @@
 var getValueFromProperty = require('./getValueFromProperty');
 
-var PROPERTIES = require('./PROPERTIES');
+var PROPERTIES = require('../PROPERTIES');
 
 // this will parse out all properties the exporter supports
 module.exports = function(layer, isStart) {

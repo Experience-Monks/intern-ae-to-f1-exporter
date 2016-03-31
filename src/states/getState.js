@@ -1,4 +1,4 @@
-var getTargetName = require('./getTargetName');
+var getTargetName = require('../util/getTargetName');
 var getLayerProperties = require('./getLayerProperties');
 
 // the purpose of this function is to read states from the

@@ -1,6 +1,6 @@
-var getCompositions = require('./getCompositions');
-var getStateNamesFromComp = require('./getStateNamesFromComp');
-var getState = require('./getState');
+var getCompositions = require('./util/getCompositions');
+var getStateNamesFromComp = require('./util/getStateNamesFromComp');
+var getState = require('./states/getState');
 
 // compositions should be named fromName_to_toName
 // where fromName is the start state

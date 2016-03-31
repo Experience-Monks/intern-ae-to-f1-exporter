@@ -1,5 +1,5 @@
 var getAnimationFromProperty = require('./getAnimationFromProperty');
-var PROPERTIES = require('./PROPERTIES');
+var PROPERTIES = require('../PROPERTIES');
 
 module.exports = function(layer, duration) {
   var rVal = null;

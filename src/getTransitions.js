@@ -1,6 +1,6 @@
-var getCompositions = require('./getCompositions');
-var getStateNamesFromComp = require('./getStateNamesFromComp');
-var getAnimationFromComp = require('./getAnimationFromComp');
+var getCompositions = require('./util/getCompositions');
+var getStateNamesFromComp = require('./util/getStateNamesFromComp');
+var getAnimationFromComp = require('./transition/getAnimationFromComp');
 
 module.exports = function(json) {
   var rVal = [];

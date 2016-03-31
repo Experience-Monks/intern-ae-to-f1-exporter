@@ -9,7 +9,9 @@
     "email": "me@mikkoh.com",
     "url": "https://github.com/mikkoh"
   },
-  "dependencies": {},
+  "dependencies": {
+    "serialize-javascript": "^1.2.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "node test.js"
