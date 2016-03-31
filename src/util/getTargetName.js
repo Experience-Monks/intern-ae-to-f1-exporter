@@ -43,6 +43,9 @@ module.exports = function(layers) {
       layerName = layer.name;
     }
 
+    // we want to remove '.' out of the name because later on targets are resolved with . in the name
+    layerName = layerName.split('.').join(' ');
+
     return layerName;
   };
 };

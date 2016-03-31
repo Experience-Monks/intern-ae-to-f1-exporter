@@ -26,6 +26,9 @@ function rotate(ui) {
 function translate(ui) {
   ui.style.translate = ui.position;
 
+  // z is inverted going from ae -> dom
+  ui.style.translate[ 2 ] *= -1;
+
   delete ui.position;
 }
 
