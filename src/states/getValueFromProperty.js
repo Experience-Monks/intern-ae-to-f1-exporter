@@ -14,5 +14,5 @@ module.exports = function(property, isStart) {
     rVal = keyframes[ 0 ][ 1 ];
   }
 
-  return rVal;
+  return Array.isArray(rVal) ? rVal.slice() : rVal;
 };
