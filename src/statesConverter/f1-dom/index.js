@@ -1,41 +1,53 @@
 var merge = require('deep-extend');
-var getUIFromStates = require('../getUIFromStates');
 
-function opacity(ui) {
-  ui.style.opacity = ui.opacity / 100;
-  delete ui.opacity;
+function opacity(uiState, uiTarget) {
+  uiState.style.opacity = uiState.opacity / 100;
+  delete uiState.opacity;
 }
 
-function scale(ui) {
-  ui.style.scale = ui.scale.map(function(value) {
+function scale(uiState, uiTarget) {
+  uiState.style.scale = uiState.scale.map(function(value) {
     return value / 100;
   });
-  delete ui.scale;
+  delete uiState.scale;
 }
 
-function rotate(ui) {
-  var rotation = [ ui.rotationX, ui.rotationY, ui.rotationZ ];
+function rotate(uiState, uiTarget) {
+  var rotation = [ uiState.rotationX, uiState.rotationY, uiState.rotationZ ];
 
-  ui.style.rotate = rotation;
+  uiState.style.rotate = rotation;
 
-  delete ui.rotationX;
-  delete ui.rotationY;
-  delete ui.rotationZ;
+  delete uiState.rotationX;
+  delete uiState.rotationY;
+  delete uiState.rotationZ;
 }
 
-function translate(ui) {
-  ui.style.translate = ui.position;
+function translate(uiState, uiTarget) {
+  uiState.style.translate = uiState.position;
 
   // z is inverted going from ae -> dom
-  ui.style.translate[ 2 ] *= -1;
+  uiState.style.translate[ 2 ] *= -1;
 
-  delete ui.position;
+  delete uiState.position;
 }
 
-function transformOrigin(ui) {
-  ui.style.transformOrigin = ui.anchorPoint;
+function transformOrigin(uiState, uiTarget) {
+  var anchorX;
+  var anchorY;
 
-  delete ui.anchorPoint;
+  uiState.style.transformOrigin = uiState.anchorPoint;
+  anchorX = uiState.style.transformOrigin[ 0 ] /= uiTarget.width;
+  anchorY = uiState.style.transformOrigin[ 1 ] /= uiTarget.height;
+
+  uiState.style.transformOrigin.length = 2;
+
+
+  // because translates in html lands are still top left corner based
+  // we'll offset using margins instead kidn of yucky
+  uiState.style.marginLeft = anchorX * -uiTarget.width;
+  uiState.style.marginTop = anchorY * -uiTarget.height;
+
+  delete uiState.anchorPoint;
 }
 
 var PARSERS = [
@@ -51,14 +63,23 @@ module.exports = function(dataF1) {
     {},
     dataF1
   );
-  var allUI = getUIFromStates(rVal.states);
 
-  allUI.forEach(function(ui) {
-    ui.style = {};
+  Object.keys(rVal.states)
+  .forEach(function(nameState) {
+    var state = rVal.states[ nameState ];
 
-    PARSERS
-    .forEach(function(parser) {
-      parser(ui);
+    Object.keys(state)
+    .forEach(function(nameUI) {
+      var ui = state[ nameUI ];
+      var target = rVal.targets[ nameUI ];
+
+      // drop in the style object for this ui
+      ui.style = {};
+
+      PARSERS
+      .forEach(function(parser) {
+        parser(ui, target);
+      });
     });
   });
 

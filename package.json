@@ -11,15 +11,16 @@
   },
   "dependencies": {
     "deep-extend": "^0.4.1",
+    "es6-template-strings": "^2.0.0",
     "serialize-javascript": "^1.2.0"
   },
   "devDependencies": {
     "budo": "^8.1.0",
-    "f1-dom": "^7.1.3",
+    "f1-dom": "^8.0.0",
     "nodemon": "^1.9.1"
   },
   "scripts": {
-    "test": "nodemon test/f1-dom/ --ignore test/f1-dom/statesTransitions.js"
+    "test": "nodemon test/f1-dom/ --ignore test/f1-dom/statesTransitions.js --ignore test/f1-dom/test-f1-dom/"
   },
   "keywords": [
     "after,effects,f1,ui"

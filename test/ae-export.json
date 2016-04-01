@@ -9,7 +9,7 @@
   "isProfessionalVersion": true,
   "isoLanguage": "en_US",
   "language": 1612,
-  "memoryInUse": 2472820736,
+  "memoryInUse": 305876992,
   "saveProjectOnCrash": true,
   "version": "13.7x124",
   "project": {
@@ -18,7 +18,7 @@
     "footageTimecodeDisplayStartType": 2012,
     "framesCountType": 2414,
     "numItems": 4,
-    "revision": 1631,
+    "revision": 1659,
     "timeDisplayType": 1812,
     "items": [
       {
@@ -52,6 +52,7 @@
           1,
           1
         ],
+        "selected": true,
         "selectedLayers": [],
         "selectedProperties": [],
         "shutterAngle": 180,
@@ -89,6 +90,7 @@
             "threeDLayer": true,
             "trackMatteType": 4812,
             "width": 500,
+            "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
             "properties": {
               "Marker": {
                 "active": true,
@@ -3590,7 +3592,22 @@
         "pixelAspect": 1,
         "proxySource": null,
         "typeName": "Footage",
-        "width": 500
+        "width": 500,
+        "file": null,
+        "mainSource": {
+          "alphaMode": "STRAIGHT",
+          "fieldSeparationType": "OFF",
+          "file": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
+          "hasAlpha": true,
+          "isStill": true,
+          "loop": 1,
+          "premulColor": [
+            0,
+            0,
+            0
+          ],
+          "removePulldown": "OFF"
+        }
       },
       {
         "id": 13,
@@ -3609,7 +3626,22 @@
             "pixelAspect": 1,
             "proxySource": null,
             "typeName": "Footage",
-            "width": 500
+            "width": 500,
+            "file": null,
+            "mainSource": {
+              "alphaMode": "STRAIGHT",
+              "fieldSeparationType": "OFF",
+              "file": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
+              "hasAlpha": true,
+              "isStill": true,
+              "loop": 1,
+              "premulColor": [
+                0,
+                0,
+                0
+              ],
+              "removePulldown": "OFF"
+            }
           }
         ]
       },
@@ -3644,7 +3676,6 @@
           1,
           1
         ],
-        "selected": true,
         "selectedLayers": [],
         "selectedProperties": [],
         "shutterAngle": 180,
@@ -3684,6 +3715,7 @@
             "time": 0.23333333333333,
             "trackMatteType": 4812,
             "width": 500,
+            "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
             "properties": {
               "Marker": {
                 "active": true,

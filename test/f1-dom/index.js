@@ -1,14 +1,21 @@
-var aeToF1 = require('../../src/');
-var f1Dom = require('../../src/statesConverter/f1-dom');
-var json = require('../ae-export');
-var toJSString = require('serialize-javascript');
-var fs = require('fs');
+var f1Dom = require('../../f1-dom');
 var path = require('path');
+var fs = require('fs');
 var budo = require('budo');
 
-var statesTransitions = 'module.exports = ' + toJSString(f1Dom(aeToF1(json)), '  ');
+var OUT_PATH = path.join(__dirname, 'test-f1-dom');
 
-fs.writeFileSync(path.join(__dirname, 'statesTransitions.js'), statesTransitions);
+if(!fs.existsSync(OUT_PATH)) {
+  fs.mkdirSync(OUT_PATH);  
+}
+
+f1Dom({
+  pathJSON: path.join(__dirname, '..', 'ae-export.json'),
+  pathOut: OUT_PATH
+});
+
+
+// fs.writeFileSync(path.join(__dirname, 'statesTransitions.js'), outJS);
 
 budo(
   path.join(__dirname, 'frontend.js'),
@@ -21,4 +28,3 @@ budo(
 .on('connect', function() {
   console.log('up and runnning on :8000');
 });
-
