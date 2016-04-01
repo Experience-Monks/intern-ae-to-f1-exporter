@@ -3,6 +3,8 @@ var getStates = require('./getStates');
 var getTransitions = require('./getTransitions');
 
 module.exports = function(opts) {
+  opts.assetPath = opts.assetPath || 'assets/';
+
   var html = ${html};
 
   opts = Object.assign(
@@ -14,8 +16,6 @@ module.exports = function(opts) {
     },
     opts
   );
-
-  console.log(opts);
 
   opts.el.innerHTML = html;
 

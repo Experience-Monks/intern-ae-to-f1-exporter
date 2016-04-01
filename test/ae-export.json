@@ -9,7 +9,7 @@
   "isProfessionalVersion": true,
   "isoLanguage": "en_US",
   "language": 1612,
-  "memoryInUse": 305876992,
+  "memoryInUse": 324505600,
   "saveProjectOnCrash": true,
   "version": "13.7x124",
   "project": {
@@ -18,7 +18,7 @@
     "footageTimecodeDisplayStartType": 2012,
     "framesCountType": 2414,
     "numItems": 4,
-    "revision": 1659,
+    "revision": 1702,
     "timeDisplayType": 1812,
     "items": [
       {
@@ -442,18 +442,66 @@
                   "canSetExpression": true,
                   "canVaryOverTime": true,
                   "enabled": true,
+                  "isModified": true,
+                  "isTimeVarying": true,
                   "matchName": "ADBE Rotate Y",
                   "name": "Y Rotation",
+                  "numKeys": 2,
                   "propertyDepth": 2,
                   "propertyIndex": 9,
                   "propertyType": "PROPERTY",
                   "propertyValueType": "OneD",
                   "selectedKeys": [],
                   "unitsText": "degrees",
+                  "value": 67,
                   "keyframes": [
                     [
                       0,
-                      0
+                      67,
+                      {
+                        "easeIn": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 0,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        },
+                        "easeOut": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": -69.3103448275862,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    [
+                      0.96666666666667,
+                      0,
+                      {
+                        "easeIn": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": -69.3103448275862,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        },
+                        "easeOut": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 0,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        }
+                      }
                     ]
                   ]
                 },
@@ -3679,7 +3727,6 @@
         "selectedLayers": [],
         "selectedProperties": [],
         "shutterAngle": 180,
-        "time": 0.23333333333333,
         "typeName": "Composition",
         "usedIn": [],
         "width": 400,
@@ -3712,7 +3759,6 @@
             "selectedProperties": [],
             "stretch": 100,
             "threeDLayer": true,
-            "time": 0.23333333333333,
             "trackMatteType": 4812,
             "width": 500,
             "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
@@ -3838,7 +3884,7 @@
                   "value": [
                     200,
                     320,
-                    -21.5034562789412
+                    0
                   ],
                   "keyframes": [
                     [

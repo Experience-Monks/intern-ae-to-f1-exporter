@@ -50,7 +50,7 @@ module.exports = function(jsonAE) {
         html.push(
           '<img ' + 
           'data-f1="' + getName(i) + '" ' +
-          'src="' + path.basename(layer.source)  + '" ' + 
+          'src="\' + opts.assetPath + \'' + path.basename(layer.source)  + '" ' + 
           'width="' + layer.width  + '" ' + 
           'height="' + layer.height  + '" ' + 
           'style="position: absolute; left: 0px; top: 0px;" ' +

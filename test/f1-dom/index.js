@@ -21,7 +21,7 @@ budo(
   path.join(__dirname, 'frontend.js'),
   {
     live: true,
-    dir: path.join(__dirname, '..', 'ae', '(Footage)', 'Images'),
+    dir: path.join(__dirname, 'test-f1-dom'),
     port: 8000
   }
 )

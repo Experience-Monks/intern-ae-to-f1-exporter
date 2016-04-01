@@ -10,8 +10,10 @@
     "url": "https://github.com/mikkoh"
   },
   "dependencies": {
+    "async": "^2.0.0-rc.2",
     "deep-extend": "^0.4.1",
     "es6-template-strings": "^2.0.0",
+    "fs-extra": "^0.26.7",
     "serialize-javascript": "^1.2.0"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var serializeJS = require('serialize-javascript');
 var template = require('es6-template-strings');
+var copyAssetsFromTargets = require('../src/copyAssetsFromTargets');
 
 var aeToF1 = require('../src/');
 var convertF1Dom = require('../src/statesConverter/f1-dom');
@@ -35,4 +36,7 @@ module.exports = function(opts) {
   fs.writeFileSync(path.join(opts.pathOut, 'index.js'), outIndex);
   fs.writeFileSync(path.join(opts.pathOut, 'getStates.js'), outGetStates);
   fs.writeFileSync(path.join(opts.pathOut, 'getTransitions.js'), outGetTransitions);
+
+  // now move over assets
+  copyAssetsFromTargets(statesTransitions.targets, opts.pathOut);
 };
