@@ -4,6 +4,14 @@ var getTargetName = require('../../src/util/getTargetName');
 var path = require('path');
 
 module.exports = function(jsonAE) {
+  // the following calculations were researched from
+  // http://www.turbodrive.tv/blog/after-effects-to-css-3d-workflow-part-2-transposition/
+  // The default camera is apparently the 50mm camera according to other documentation
+  var FOCAL_LENGTH = 50;
+  var FILM_WIDTH = 36;
+  var VIEW_PORT_WIDTH;
+  var PERSPECTIVE;
+
   var compositions = getCompositions(jsonAE);
   var compIdx = 0;
   var getName;
@@ -26,12 +34,19 @@ module.exports = function(jsonAE) {
     });
   }
 
+  VIEW_PORT_WIDTH = composition.width;
+
+  // the following calculations were researched from
+  // http://www.turbodrive.tv/blog/after-effects-to-css-3d-workflow-part-2-transposition/
+  // The default camera is apparently the 50mm camera according to other documentation
+  PERSPECTIVE = VIEW_PORT_WIDTH / (FILM_WIDTH/FOCAL_LENGTH);
+
   var styleContainer = [
     'width: ' + composition.width + 'px',
     'height: ' + composition.height + 'px',
-    '-webkit-perspective: 1000px',
-    '-moz-perspective: 1000px',
-    'perspective: 1000px',
+    '-webkit-perspective: ' + PERSPECTIVE + 'px',
+    '-moz-perspective: ' + PERSPECTIVE + 'px',
+    'perspective: ' + PERSPECTIVE + 'px',
     '-webkit-transform-style: preserve-3d',
     '-moz-transform-style: preserve-3d',
     'transform-style: preserve-3d',

@@ -9,7 +9,7 @@
   "isProfessionalVersion": true,
   "isoLanguage": "en_US",
   "language": 1612,
-  "memoryInUse": 476008448,
+  "memoryInUse": 540016640,
   "saveProjectOnCrash": true,
   "version": "13.7x124",
   "project": {
@@ -18,7 +18,7 @@
     "footageTimecodeDisplayStartType": 2012,
     "framesCountType": 2414,
     "numItems": 4,
-    "revision": 1819,
+    "revision": 1879,
     "timeDisplayType": 1812,
     "items": [
       {
@@ -52,6 +52,7 @@
           1,
           1
         ],
+        "selected": true,
         "selectedLayers": [],
         "selectedProperties": [],
         "shutterAngle": 180,
@@ -3772,9 +3773,7 @@
           1,
           1
         ],
-        "selected": true,
         "shutterAngle": 180,
-        "time": 0.23333333333333,
         "typeName": "Composition",
         "usedIn": [],
         "width": 400,
@@ -3807,7 +3806,6 @@
             "selected": true,
             "stretch": 100,
             "threeDLayer": true,
-            "time": 0.23333333333333,
             "trackMatteType": 4812,
             "width": 500,
             "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
@@ -3933,7 +3931,7 @@
                   "value": [
                     200,
                     320,
-                    -21.5034562789412
+                    0
                   ],
                   "keyframes": [
                     [
@@ -4196,7 +4194,6 @@
                     2
                   ],
                   "unitsText": "degrees",
-                  "value": 35,
                   "keyframes": [
                     [
                       0,
