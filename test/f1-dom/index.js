@@ -14,9 +14,6 @@ f1Dom({
   pathOut: OUT_PATH
 });
 
-
-// fs.writeFileSync(path.join(__dirname, 'statesTransitions.js'), outJS);
-
 budo(
   path.join(__dirname, 'frontend.js'),
   {

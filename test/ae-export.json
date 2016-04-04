@@ -9,7 +9,7 @@
   "isProfessionalVersion": true,
   "isoLanguage": "en_US",
   "language": 1612,
-  "memoryInUse": 324505600,
+  "memoryInUse": 476008448,
   "saveProjectOnCrash": true,
   "version": "13.7x124",
   "project": {
@@ -18,7 +18,7 @@
     "footageTimecodeDisplayStartType": 2012,
     "framesCountType": 2414,
     "numItems": 4,
-    "revision": 1702,
+    "revision": 1819,
     "timeDisplayType": 1812,
     "items": [
       {
@@ -52,10 +52,10 @@
           1,
           1
         ],
-        "selected": true,
         "selectedLayers": [],
         "selectedProperties": [],
         "shutterAngle": 180,
+        "time": 0.96666666666667,
         "typeName": "Composition",
         "usedIn": [],
         "width": 400,
@@ -88,6 +88,7 @@
             "selectedProperties": [],
             "stretch": 100,
             "threeDLayer": true,
+            "time": 0.96666666666667,
             "trackMatteType": 4812,
             "width": 500,
             "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
@@ -212,8 +213,8 @@
                   "unitsText": "pixels",
                   "value": [
                     200,
-                    1258,
-                    1290
+                    320,
+                    0
                   ],
                   "keyframes": [
                     [
@@ -422,8 +423,11 @@
                   "canSetExpression": true,
                   "canVaryOverTime": true,
                   "enabled": true,
+                  "isModified": true,
+                  "isTimeVarying": true,
                   "matchName": "ADBE Rotate X",
                   "name": "X Rotation",
+                  "numKeys": 2,
                   "propertyDepth": 2,
                   "propertyIndex": 8,
                   "propertyType": "PROPERTY",
@@ -433,7 +437,51 @@
                   "keyframes": [
                     [
                       0,
-                      0
+                      -76,
+                      {
+                        "easeIn": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 0,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        },
+                        "easeOut": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 78.6206896551724,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    [
+                      0.96666666666667,
+                      0,
+                      {
+                        "easeIn": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 78.6206896551724,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        },
+                        "easeOut": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 0,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        }
+                      }
                     ]
                   ]
                 },
@@ -453,7 +501,6 @@
                   "propertyValueType": "OneD",
                   "selectedKeys": [],
                   "unitsText": "degrees",
-                  "value": 67,
                   "keyframes": [
                     [
                       0,
@@ -544,6 +591,7 @@
                   "propertyValueType": "OneD",
                   "selectedKeys": [],
                   "unitsText": "percent",
+                  "value": 100,
                   "keyframes": [
                     [
                       0,
@@ -3724,9 +3772,9 @@
           1,
           1
         ],
-        "selectedLayers": [],
-        "selectedProperties": [],
+        "selected": true,
         "shutterAngle": 180,
+        "time": 0.23333333333333,
         "typeName": "Composition",
         "usedIn": [],
         "width": 400,
@@ -3756,9 +3804,10 @@
             "propertyType": "NAMED_GROUP",
             "quality": 4414,
             "samplingQuality": 4612,
-            "selectedProperties": [],
+            "selected": true,
             "stretch": 100,
             "threeDLayer": true,
+            "time": 0.23333333333333,
             "trackMatteType": 4812,
             "width": 500,
             "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
@@ -3884,7 +3933,7 @@
                   "value": [
                     200,
                     320,
-                    0
+                    -21.5034562789412
                   ],
                   "keyframes": [
                     [
@@ -4133,18 +4182,69 @@
                   "canSetExpression": true,
                   "canVaryOverTime": true,
                   "enabled": true,
+                  "isModified": true,
+                  "isTimeVarying": true,
                   "matchName": "ADBE Rotate Z",
                   "name": "Z Rotation",
+                  "numKeys": 2,
                   "propertyDepth": 2,
                   "propertyIndex": 10,
                   "propertyType": "PROPERTY",
                   "propertyValueType": "OneD",
-                  "selectedKeys": [],
+                  "selected": true,
+                  "selectedKeys": [
+                    2
+                  ],
                   "unitsText": "degrees",
+                  "value": 35,
                   "keyframes": [
                     [
                       0,
-                      0
+                      0,
+                      {
+                        "easeIn": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 0,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        },
+                        "easeOut": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 150,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    [
+                      0.23333333333333,
+                      35,
+                      {
+                        "easeIn": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 150,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        },
+                        "easeOut": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 0,
+                              "influence": 16.666666667
+                            }
+                          ]
+                        }
+                      }
                     ]
                   ]
                 },

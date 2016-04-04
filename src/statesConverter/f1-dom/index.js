@@ -13,7 +13,7 @@ function scale(uiState, uiTarget) {
 }
 
 function rotate(uiState, uiTarget) {
-  var rotation = [ uiState.rotationX, uiState.rotationY, uiState.rotationZ ];
+  var rotation = [ -uiState.rotationX, -uiState.rotationY, uiState.rotationZ ];
 
   uiState.style.rotate = rotation;
 

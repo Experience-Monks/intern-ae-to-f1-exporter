@@ -8,10 +8,12 @@ var ui = getUI({
 ui.init('out');
 ui.go('idle');
 
-elUI.addEventListener('mouseover', function() {
+window.addEventListener('mousedown', function() {
+  console.log('over');
   ui.go('over');
 });
 
-elUI.addEventListener('mouseout', function() {
+window.addEventListener('mouseup', function() {
+  console.log('idle');
   ui.go('idle');
 });

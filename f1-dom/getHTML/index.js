@@ -28,8 +28,16 @@ module.exports = function(jsonAE) {
 
   var styleContainer = [
     'width: ' + composition.width + 'px',
-    'width: ' + composition.height + 'px',
-    'perspective: 1000px'
+    'height: ' + composition.height + 'px',
+    '-webkit-perspective: 1000px',
+    '-moz-perspective: 1000px',
+    'perspective: 1000px',
+    '-webkit-transform-style: preserve-3d',
+    '-moz-transform-style: preserve-3d',
+    'transform-style: preserve-3d',
+    '-webkit-transform-origin: 50% 50%',
+    '-moz-transform-origin: 50% 50%',
+    'transform-origin: 50% 50%'
   ];
 
   return html && "'<div style=\"" + styleContainer.join('; ') + "\">' +\n" +
