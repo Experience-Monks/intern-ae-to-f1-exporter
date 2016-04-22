@@ -5,8 +5,6 @@ var template = require('es6-template-strings');
 var copyAssetsFromTargets = require('../src/copyAssetsFromTargets');
 
 var aeToF1 = require('../src/');
-var converterStates = require('./converterStates');
-var converterTransitions = require('./converterTransitions');
 var getHTML = require('./getHTML');
 
 module.exports = function(opts) {
@@ -19,28 +17,30 @@ module.exports = function(opts) {
   }
 
   var json = JSON.parse(fs.readFileSync(opts.pathJSON));
-  var templateIndex = fs.readFileSync(path.join(__dirname, 'template-index.js'));
-  var templateStates = fs.readFileSync(path.join(__dirname, 'template-getStates.js'));
-  var templateTransitions = fs.readFileSync(path.join(__dirname, 'template-getTransitions.js'));
+  // var templateIndex = fs.readFileSync(path.join(__dirname, 'template-index.js'));
+  // var templateStates = fs.readFileSync(path.join(__dirname, 'template-getStates.js'));
+  // var templateTransitions = fs.readFileSync(path.join(__dirname, 'template-getTransitions.js'));
   var statesTransitions = aeToF1(json);
 
-  statesTransitions.transitions = converterTransitions(statesTransitions);
-  statesTransitions.states = converterStates(statesTransitions);
+  console.log(JSON.stringify(statesTransitions, null, '  '));
 
-  var outIndex = template(templateIndex, {
-    html: getHTML(json)
-  });
-  var outGetStates = template(templateStates, {
-    javascript: serializeJS(statesTransitions.states, '  ')
-  });
-  var outGetTransitions = template(templateTransitions, {
-    javascript: serializeJS(statesTransitions.transitions, '  ')
-  });
+  // statesTransitions.transitions = converterTransitions(statesTransitions);
+  // statesTransitions.states = converterStates(statesTransitions);
 
-  fs.writeFileSync(path.join(opts.pathOut, 'index.js'), outIndex);
-  fs.writeFileSync(path.join(opts.pathOut, 'getStates.js'), outGetStates);
-  fs.writeFileSync(path.join(opts.pathOut, 'getTransitions.js'), outGetTransitions);
+  // var outIndex = template(templateIndex, {
+  //   html: getHTML(json)
+  // });
+  // var outGetStates = template(templateStates, {
+  //   javascript: serializeJS(statesTransitions.states, '  ')
+  // });
+  // var outGetTransitions = template(templateTransitions, {
+  //   javascript: serializeJS(statesTransitions.transitions, '  ')
+  // });
 
-  // now move over assets
-  copyAssetsFromTargets(statesTransitions.targets, opts.pathOut);
+  // fs.writeFileSync(path.join(opts.pathOut, 'index.js'), outIndex);
+  // fs.writeFileSync(path.join(opts.pathOut, 'getStates.js'), outGetStates);
+  // fs.writeFileSync(path.join(opts.pathOut, 'getTransitions.js'), outGetTransitions);
+
+  // // now move over assets
+  // copyAssetsFromTargets(statesTransitions.targets, opts.pathOut);
 };

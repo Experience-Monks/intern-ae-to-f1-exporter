@@ -1,5 +1,5 @@
-var getTargetName = require('../util/getTargetName');
-var getLayerProperties = require('./getLayerProperties');
+var getTargetName = require('./util/getTargetName');
+var getLayerAnimations = require('./getLayerAnimations');
 
 // the purpose of this function is to read states from the
 // composition
@@ -13,7 +13,7 @@ module.exports = function(composition, isStart) {
   composition.layers.forEach(function(layer, i) {
     var targetName = getNameFromLayer(i);
 
-    rVal[ targetName ] = getLayerProperties(layer, isStart);
+    rVal[ targetName ] = getLayerAnimations(layer, isStart);
 
     if(!rVal[ targetName ]) {
       throw new Error('couldn\'t parse out the ' + (isStart ? 'from' : 'to') + ' state from ' + composition.name + ' for target ' + targetName);

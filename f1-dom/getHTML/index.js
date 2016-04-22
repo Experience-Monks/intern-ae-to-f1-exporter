@@ -1,5 +1,4 @@
-var getCompositions = require('../../src/util/getCompositions');
-var getStateNamesFromComp = require('../../src/util/getStateNamesFromComp');
+var getTransitionCompositions = require('../../src/util/getTransitionCompositions');
 var getTargetName = require('../../src/util/getTargetName');
 var path = require('path');
 
@@ -12,17 +11,12 @@ module.exports = function(jsonAE) {
   var VIEW_PORT_WIDTH;
   var PERSPECTIVE;
 
-  var compositions = getCompositions(jsonAE);
-  var compIdx = 0;
+  var compositions = getTransitionCompositions(jsonAE);
+  var composition = compositions[ 0 ];
   var getName;
   var html;
-  var composition;
+  
   var fileName;
-
-  while((composition = compositions[ compIdx ]) && !fileName) {
-    fileName = getStateNamesFromComp(composition);
-    compIdx++;
-  }
 
   if(composition) {
     getName = getTargetName(composition.layers);
