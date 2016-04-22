@@ -5,17 +5,16 @@ module.exports = function(property, duration) {
 
   // see if there is some sort of animation
   if(property.keyframes.length > 1) {
-    var timeLast = property.keyframes[ property.keyframes.length - 1 ][ 0 ];
-    var timeStart= property.keyframes[ 0 ][ 0 ];
+    var firstFrame = property.keyframes[ 0 ];
 
-    rVal = {
-      duration: timeLast - timeStart
-    };
+    rVal = property.keyframes.map(function(timeValueEase) {
+      var timeValue = timeValueEase.slice(0, 2);
 
-    // check if the keyframes doesnt start at 0 if not then we need to add in a delay
-    if(timeStart !== 0) {
-      rVal.delay = timeStart;
-    }
+      // convert time to be a scale
+      timeValue[ 0 ] /= duration;
+
+      return timeValue;
+    });
   }
 
   return rVal;

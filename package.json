@@ -15,6 +15,7 @@
     "es6-template-strings": "^2.0.0",
     "f1-dom": "^8.0.2",
     "fs-extra": "^0.26.7",
+    "keyframes": "^2.3.0",
     "serialize-javascript": "^1.2.0"
   },
   "devDependencies": {

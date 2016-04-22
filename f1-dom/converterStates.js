@@ -61,17 +61,17 @@ var PARSERS = [
 module.exports = function(dataF1) {
   var rVal = merge(
     {},
-    dataF1
+    dataF1.states
   );
 
-  Object.keys(rVal.states)
+  Object.keys(rVal)
   .forEach(function(nameState) {
-    var state = rVal.states[ nameState ];
+    var state = rVal[ nameState ];
 
     Object.keys(state)
     .forEach(function(nameUI) {
       var ui = state[ nameUI ];
-      var target = rVal.targets[ nameUI ];
+      var target = dataF1.targets[ nameUI ];
 
       // drop in the style object for this ui
       ui.style = {};

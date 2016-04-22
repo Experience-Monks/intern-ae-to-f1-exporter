@@ -15,7 +15,9 @@ module.exports = function(composition) {
     var layerAnimation = getAnimationFromLayer(layer, composition.duration);
 
     if(layerAnimation) {
-      rVal[ getLayerName(i) ] = layerAnimation;
+      rVal.keyframes = rVal.keyframes || {};
+
+      rVal.keyframes[ getLayerName(i) ] = layerAnimation;
     }
   });
 

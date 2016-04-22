@@ -9,7 +9,7 @@
   "isProfessionalVersion": true,
   "isoLanguage": "en_US",
   "language": 1612,
-  "memoryInUse": 540016640,
+  "memoryInUse": 376844288,
   "saveProjectOnCrash": true,
   "version": "13.7x124",
   "project": {
@@ -18,7 +18,7 @@
     "footageTimecodeDisplayStartType": 2012,
     "framesCountType": 2414,
     "numItems": 4,
-    "revision": 1879,
+    "revision": 2033,
     "timeDisplayType": 1812,
     "items": [
       {
@@ -56,7 +56,6 @@
         "selectedLayers": [],
         "selectedProperties": [],
         "shutterAngle": 180,
-        "time": 0.96666666666667,
         "typeName": "Composition",
         "usedIn": [],
         "width": 400,
@@ -89,10 +88,8 @@
             "selectedProperties": [],
             "stretch": 100,
             "threeDLayer": true,
-            "time": 0.96666666666667,
             "trackMatteType": 4812,
             "width": 500,
-            "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
             "properties": {
               "Marker": {
                 "active": true,
@@ -205,7 +202,7 @@
                   "isTimeVarying": true,
                   "matchName": "ADBE Position",
                   "name": "Position",
-                  "numKeys": 2,
+                  "numKeys": 3,
                   "propertyDepth": 2,
                   "propertyIndex": 2,
                   "propertyType": "PROPERTY",
@@ -214,8 +211,8 @@
                   "unitsText": "pixels",
                   "value": [
                     200,
-                    320,
-                    0
+                    1258,
+                    1290
                   ],
                   "keyframes": [
                     [
@@ -244,14 +241,52 @@
                           "type": "linear",
                           "temporalEase": [
                             {
-                              "speed": 2392.46191192253,
+                              "speed": 5254.47870473702,
                               "influence": 16.666666667
                             }
                           ],
                           "spatialTangent": [
                             0,
-                            -156.33332824707,
-                            -215
+                            -71.9056625366211,
+                            -98.8894424438477
+                          ]
+                        }
+                      }
+                    ],
+                    [
+                      0.3,
+                      [
+                        175.390663972227,
+                        -193.593251146472,
+                        709.496295059903
+                      ],
+                      {
+                        "easeIn": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 5254.47870473702,
+                              "influence": 16.666666667
+                            }
+                          ],
+                          "spatialTangent": [
+                            0,
+                            179.072158813477,
+                            246.271942138672
+                          ]
+                        },
+                        "easeOut": {
+                          "type": "linear",
+                          "temporalEase": [
+                            {
+                              "speed": 2622.11621881652,
+                              "influence": 16.666666667
+                            }
+                          ],
+                          "spatialTangent": [
+                            0,
+                            -210.256683349609,
+                            -289.158996582031
                           ]
                         }
                       }
@@ -268,14 +303,14 @@
                           "type": "linear",
                           "temporalEase": [
                             {
-                              "speed": 2392.46191192253,
+                              "speed": 2622.11621881652,
                               "influence": 16.666666667
                             }
                           ],
                           "spatialTangent": [
                             0,
-                            156.33332824707,
-                            215
+                            84.4276733398438,
+                            116.110557556152
                           ]
                         },
                         "easeOut": {
@@ -435,6 +470,7 @@
                   "propertyValueType": "OneD",
                   "selectedKeys": [],
                   "unitsText": "degrees",
+                  "value": -76,
                   "keyframes": [
                     [
                       0,
@@ -502,6 +538,7 @@
                   "propertyValueType": "OneD",
                   "selectedKeys": [],
                   "unitsText": "degrees",
+                  "value": 67,
                   "keyframes": [
                     [
                       0,
@@ -592,7 +629,6 @@
                   "propertyValueType": "OneD",
                   "selectedKeys": [],
                   "unitsText": "percent",
-                  "value": 100,
                   "keyframes": [
                     [
                       0,
@@ -3675,7 +3711,8 @@
                 "keyframes": []
               }
             },
-            "nullLayer": false
+            "nullLayer": false,
+            "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png"
           }
         ]
       },
@@ -3773,7 +3810,10 @@
           1,
           1
         ],
+        "selectedLayers": [],
+        "selectedProperties": [],
         "shutterAngle": 180,
+        "time": 0.23333333333333,
         "typeName": "Composition",
         "usedIn": [],
         "width": 400,
@@ -3803,12 +3843,12 @@
             "propertyType": "NAMED_GROUP",
             "quality": 4414,
             "samplingQuality": 4612,
-            "selected": true,
+            "selectedProperties": [],
             "stretch": 100,
             "threeDLayer": true,
+            "time": 0.23333333333333,
             "trackMatteType": 4812,
             "width": 500,
-            "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png",
             "properties": {
               "Marker": {
                 "active": true,
@@ -3931,7 +3971,7 @@
                   "value": [
                     200,
                     320,
-                    0
+                    -21.5034562789412
                   ],
                   "keyframes": [
                     [
@@ -4189,11 +4229,9 @@
                   "propertyIndex": 10,
                   "propertyType": "PROPERTY",
                   "propertyValueType": "OneD",
-                  "selected": true,
-                  "selectedKeys": [
-                    2
-                  ],
+                  "selectedKeys": [],
                   "unitsText": "degrees",
+                  "value": 35,
                   "keyframes": [
                     [
                       0,
@@ -7300,7 +7338,8 @@
                 "keyframes": []
               }
             },
-            "nullLayer": false
+            "nullLayer": false,
+            "source": "~/Documents/Modules/ae-to-json/test/ae/(Footage)/jam3Logo.png"
           }
         ]
       }

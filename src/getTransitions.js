@@ -20,7 +20,7 @@ module.exports = function(json) {
       transition = {
         from: stateNames.from,
         to: stateNames.to,
-        animation: getAnimationFromComp(composition)
+        animation: getAnimationFromComp(composition),
       };
 
       // if this transition is bi then we add the boolean

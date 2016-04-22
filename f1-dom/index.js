@@ -5,7 +5,8 @@ var template = require('es6-template-strings');
 var copyAssetsFromTargets = require('../src/copyAssetsFromTargets');
 
 var aeToF1 = require('../src/');
-var convertF1Dom = require('../src/statesConverter/f1-dom');
+var converterStates = require('./converterStates');
+var converterTransitions = require('./converterTransitions');
 var getHTML = require('./getHTML');
 
 module.exports = function(opts) {
@@ -21,7 +22,10 @@ module.exports = function(opts) {
   var templateIndex = fs.readFileSync(path.join(__dirname, 'template-index.js'));
   var templateStates = fs.readFileSync(path.join(__dirname, 'template-getStates.js'));
   var templateTransitions = fs.readFileSync(path.join(__dirname, 'template-getTransitions.js'));
-  var statesTransitions = convertF1Dom(aeToF1(json));
+  var statesTransitions = aeToF1(json);
+
+  statesTransitions.transitions = converterTransitions(statesTransitions);
+  statesTransitions.states = converterStates(statesTransitions);
 
   var outIndex = template(templateIndex, {
     html: getHTML(json)
