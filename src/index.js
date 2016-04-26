@@ -30,6 +30,7 @@ module.exports = function(json) {
         from: stateNames.from,
         to: stateNames.to,
         bi: bi,
+        duration: comp.duration,
         animation: getAnimations(comp)
       };
     }

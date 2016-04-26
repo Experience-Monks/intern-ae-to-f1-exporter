@@ -2,9 +2,9 @@ var fs = require('fs');
 var path = require('path');
 var serializeJS = require('serialize-javascript');
 var template = require('es6-template-strings');
-var copyAssetsFromTargets = require('../src/copyAssetsFromTargets');
 
 var aeToF1 = require('../src/');
+var getTargets = require('../src/getTargets');
 var getHTML = require('./getHTML');
 
 module.exports = function(opts) {
@@ -16,31 +16,59 @@ module.exports = function(opts) {
     throw new Error('you must pass in `pathOut` where assets + js will be written');
   }
 
+  // read in data needed for export
   var json = JSON.parse(fs.readFileSync(opts.pathJSON));
-  // var templateIndex = fs.readFileSync(path.join(__dirname, 'template-index.js'));
-  // var templateStates = fs.readFileSync(path.join(__dirname, 'template-getStates.js'));
-  // var templateTransitions = fs.readFileSync(path.join(__dirname, 'template-getTransitions.js'));
-  var statesTransitions = aeToF1(json);
 
-  console.log(JSON.stringify(statesTransitions, null, '  '));
+  // convert after effects json data to something useable
+  var animationData = aeToF1(json);
 
-  // statesTransitions.transitions = converterTransitions(statesTransitions);
-  // statesTransitions.states = converterStates(statesTransitions);
-
-  // var outIndex = template(templateIndex, {
-  //   html: getHTML(json)
-  // });
-  // var outGetStates = template(templateStates, {
-  //   javascript: serializeJS(statesTransitions.states, '  ')
-  // });
-  // var outGetTransitions = template(templateTransitions, {
-  //   javascript: serializeJS(statesTransitions.transitions, '  ')
-  // });
-
-  // fs.writeFileSync(path.join(opts.pathOut, 'index.js'), outIndex);
-  // fs.writeFileSync(path.join(opts.pathOut, 'getStates.js'), outGetStates);
-  // fs.writeFileSync(path.join(opts.pathOut, 'getTransitions.js'), outGetTransitions);
+  outputAnimationJSON(opts, json, animationData);
+  outputTargets(opts, json, animationData);
+  outputIndexJS(opts, json, animationData);
+  outputStates(opts, json, animationData);
+  outputTransitions(opts, json, animationData);
 
   // // now move over assets
   // copyAssetsFromTargets(statesTransitions.targets, opts.pathOut);
 };
+
+function outputTargets(opts, json, animationData) {
+  var targets = getTargets(json);
+
+  Object.keys(targets).forEach(function(targetName) {
+    var target = targets[ targetName ];
+
+    if(target.src) {
+      target.src = path.basename(target.src);
+    }
+  });
+
+  fs.writeFileSync(path.join(opts.pathOut, 'targets.json'), JSON.stringify(targets, null, '  '));
+}
+
+function outputAnimationJSON(opts, json, animationData) {
+  // output animation data
+  fs.writeFileSync(path.join(opts.pathOut, 'animation.json'), JSON.stringify(animationData, null, '  '));
+}
+
+function outputIndexJS(opts, json, animationData) {
+  var templateIndex = fs.readFileSync(path.join(__dirname, 'template-index.js'));
+  
+  var outIndex = template(templateIndex, {
+    html: getHTML(json)
+  });
+
+  fs.writeFileSync(path.join(opts.pathOut, 'index.js'), outIndex);
+}
+
+function outputStates(opts, json, animationData) {
+  var templateStates = fs.readFileSync(path.join(__dirname, 'template-getStates.js'));
+
+  fs.writeFileSync(path.join(opts.pathOut, 'getStates.js'), templateStates); 
+}
+
+function outputTransitions(opts, json, animationData) {
+  var templateTransitions = fs.readFileSync(path.join(__dirname, 'template-getTransitions.js'));
+
+  fs.writeFileSync(path.join(opts.pathOut, 'getTransitions.js'), templateTransitions);
+}
