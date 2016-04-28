@@ -1,4 +1,4 @@
-var f1Dom = require('../../f1-dom');
+var exporterF1Dom = require('../../exporters/f1-dom');
 var path = require('path');
 var fs = require('fs');
 var budo = require('budo');
@@ -9,7 +9,7 @@ if(!fs.existsSync(OUT_PATH)) {
   fs.mkdirSync(OUT_PATH);  
 }
 
-f1Dom({
+exporterF1Dom({
   pathJSON: path.join(__dirname, '..', 'ae-export.json'),
   pathOut: OUT_PATH
 });

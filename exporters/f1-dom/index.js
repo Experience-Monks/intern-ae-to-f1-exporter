@@ -3,10 +3,10 @@ var path = require('path');
 var serializeJS = require('serialize-javascript');
 var template = require('es6-template-strings');
 
-var aeToF1 = require('../src/');
-var getTargets = require('../src/getTargets');
+var aeToF1 = require('../../src/');
+var getTargets = require('../../src/getTargets');
 var getHTML = require('./getHTML');
-var copyAssetsFromTargets = require('../src/copyAssetsFromTargets');
+var copyAssetsFromTargets = require('../../src/copyAssetsFromTargets');
 
 module.exports = function(opts) {
   if(opts.pathJSON === undefined) {

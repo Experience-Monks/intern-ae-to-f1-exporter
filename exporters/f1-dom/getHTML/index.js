@@ -1,5 +1,5 @@
-var getTransitionCompositions = require('../../src/util/getTransitionCompositions');
-var getTargetName = require('../../src/util/getTargetName');
+var getTransitionCompositions = require('../../../src/util/getTransitionCompositions');
+var getTargetName = require('../../../src/util/getTargetName');
 var path = require('path');
 
 module.exports = function(jsonAE) {
