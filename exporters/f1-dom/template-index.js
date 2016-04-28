@@ -1,8 +1,7 @@
 var f1Dom = require('f1-dom');
 var animation = require('./animation');
 var targets = require('./targets');
-var getStates = require('./getStates');
-var getTransitions = require('./getTransitions');
+var aeToF1Dom = require('ae-to-f1/f1-dom/');
 
 module.exports = function(opts) {
   opts.assetPath = opts.assetPath || 'assets/';
@@ -18,8 +17,8 @@ module.exports = function(opts) {
     {},
     {
       el: document.body,
-      states: getStates(opts),
-      transitions: getTransitions(opts)
+      states: aeToF1Dom.getStates(opts),
+      transitions: aeToF1Dom.getTransitions(opts)
     },
     opts
   );

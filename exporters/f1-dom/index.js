@@ -26,8 +26,6 @@ module.exports = function(opts) {
   outputAnimationJSON(opts, json, animationData);
   outputTargets(opts, json, animationData);
   outputIndexJS(opts, json, animationData);
-  outputStates(opts, json, animationData);
-  outputTransitions(opts, json, animationData);
 };
 
 function outputTargets(opts, json, animationData) {
@@ -62,16 +60,4 @@ function outputIndexJS(opts, json, animationData) {
   });
 
   fs.writeFileSync(path.join(opts.pathOut, 'index.js'), outIndex);
-}
-
-function outputStates(opts, json, animationData) {
-  var templateStates = fs.readFileSync(path.join(__dirname, 'template-getStates.js'));
-
-  fs.writeFileSync(path.join(opts.pathOut, 'getStates.js'), templateStates); 
-}
-
-function outputTransitions(opts, json, animationData) {
-  var templateTransitions = fs.readFileSync(path.join(__dirname, 'template-getTransitions.js'));
-
-  fs.writeFileSync(path.join(opts.pathOut, 'getTransitions.js'), templateTransitions);
 }

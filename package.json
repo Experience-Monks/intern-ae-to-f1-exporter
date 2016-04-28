@@ -13,16 +13,21 @@
     "async": "^2.0.0-rc.2",
     "bezier-easing": "^2.0.3",
     "deep-extend": "^0.4.1",
+    "envify": "^3.4.0",
     "es6-template-strings": "^2.0.0",
     "f1-dom": "^8.0.2",
     "fs-extra": "^0.26.7",
-    "keyframes": "^2.3.0",
     "serialize-javascript": "^1.2.0"
   },
   "devDependencies": {
     "budo": "^8.1.0",
     "f1-dom": "^8.0.0",
     "nodemon": "^1.9.1"
+  },
+  "browserify": {
+    "transform": [
+      "envify"
+    ]
   },
   "scripts": {
     "test": "nodemon test/f1-dom/ --ignore test/f1-dom/statesTransitions.js --ignore test/f1-dom/test-f1-dom/ --ignore test/f1-dom/frontend.js"
