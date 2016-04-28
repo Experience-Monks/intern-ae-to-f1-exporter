@@ -99,7 +99,7 @@ function writeProperties(out, targetProps, animationProperties) {
       break;
 
       case 'rotationZ':
-        writeRotationY(out, targetProps, propertyValue);
+        writeRotationZ(out, targetProps, propertyValue);
       break;
     }
   });

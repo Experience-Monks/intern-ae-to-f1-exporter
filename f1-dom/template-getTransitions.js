@@ -107,7 +107,7 @@ function getAnimation(transition, uiTargets, isReversed) {
         break;
 
         case 'rotationZ':
-          propWriter = writeRotationY;
+          propWriter = writeRotationZ;
         break;
       }
 
