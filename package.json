@@ -12,6 +12,7 @@
   "dependencies": {
     "async": "^2.0.0-rc.2",
     "deep-extend": "^0.4.1",
+    "eases-fancy": "^1.0.0",
     "es6-template-strings": "^2.0.0",
     "f1-dom": "^8.0.2",
     "fs-extra": "^0.26.7",

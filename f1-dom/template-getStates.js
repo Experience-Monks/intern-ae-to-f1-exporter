@@ -7,42 +7,29 @@ function getStatesFromAnimation(animation, targets) {
 
   animation.forEach(function(transition) {
     if(!states[ transition.from ]) {
-      states[ transition.from ] = getFrom(transition.animation, targets);
+      states[ transition.from ] = getState(transition.animation, targets, true);
     }
 
     if(!states[ transition.to ]) {
-      states[ transition.to ] = getTo(transition.animation, targets);
+      states[ transition.to ] = getState(transition.animation, targets, false);
     }
   });
 
   return states;
 }
 
-function getFrom(transition, targets) {
+function getState(transition, targets, isFrom) {
   return Object.keys(transition).reduce(function(rVal, targetName) {
     var outTarget = {};
     var targetProps = targets[ targetName ];
     var targetAnimation = transition[ targetName ];
     
     parseStatic(outTarget, targetProps, targetAnimation);
-    parseAnimated(outTarget, targetProps, targetAnimation, true);
+    parseAnimated(outTarget, targetProps, targetAnimation, isFrom);
 
     rVal[ targetName ] = outTarget;
 
     return rVal;
-  }, {});
-}
-
-function getTo(transition, targets) {
-  return Object.keys(transition).reduce(function(rVal, targetName) {
-    var outTarget = {};
-    var targetProps = targets[ targetName ];
-    var targetAnimation = transition[ targetName ];
-    
-    parseStatic(outTarget, targetProps, targetAnimation);
-    parseAnimated(outTarget, targetProps, targetAnimation, false);
-
-    rVal[ targetName ] = outTarget;
   }, {});
 }
 
@@ -123,6 +110,9 @@ function writeAnchorPoint(out, targetProps, value) {
     value[ 0 ] / targetProps.width,
     value[ 1 ] / targetProps.height
   ];
+
+  out.marginLeft = out.transformOrigin[ 0 ] * -targetProps.width;
+  out.marginTop = out.transformOrigin[ 1 ] * -targetProps.height;
 }
 
 function writeOpacity(out, targetProps, value) {
@@ -131,6 +121,9 @@ function writeOpacity(out, targetProps, value) {
 
 function writePosition(out, targetProps, value) {
   out.translate = value.slice();
+
+  // z is inverted in ae
+  out.translate[ 2 ] = -out.translate[ 2 ];
 }
 
 function writeScale(out, targetProps, value) {
@@ -142,13 +135,15 @@ function writeScale(out, targetProps, value) {
 function writeRotationX(out, targetProps, value) {
   out.rotate = out.rotate || [0, 0, 0];
 
-  out.rotate[ 0 ] = value;
+  // rotation values are inverted in ae vs browser
+  out.rotate[ 0 ] = -value;
 }
 
 function writeRotationY(out, targetProps, value) {
   out.rotate = out.rotate || [0, 0, 0];
 
-  out.rotate[ 1 ] = value;
+  // rotation values are inverted in ae vs browser
+  out.rotate[ 1 ] = -value;
 }
 
 function writeRotationZ(out, targetProps, value) {

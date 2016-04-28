@@ -6,6 +6,7 @@ var template = require('es6-template-strings');
 var aeToF1 = require('../src/');
 var getTargets = require('../src/getTargets');
 var getHTML = require('./getHTML');
+var copyAssetsFromTargets = require('../src/copyAssetsFromTargets');
 
 module.exports = function(opts) {
   if(opts.pathJSON === undefined) {
@@ -27,23 +28,25 @@ module.exports = function(opts) {
   outputIndexJS(opts, json, animationData);
   outputStates(opts, json, animationData);
   outputTransitions(opts, json, animationData);
-
-  // // now move over assets
-  // copyAssetsFromTargets(statesTransitions.targets, opts.pathOut);
 };
 
 function outputTargets(opts, json, animationData) {
   var targets = getTargets(json);
 
-  Object.keys(targets).forEach(function(targetName) {
-    var target = targets[ targetName ];
+  copyAssetsFromTargets(targets, opts.pathOut, function() {
+    Object.keys(targets).forEach(function(targetName) {
+      var target = targets[ targetName ];
+      var fileName;
 
-    if(target.src) {
-      target.src = path.basename(target.src);
-    }
+      if(target.src) {
+        fileName = path.basename(target.src);
+
+        target.src = fileName;
+      }
+    });
+
+    fs.writeFileSync(path.join(opts.pathOut, 'targets.json'), JSON.stringify(targets, null, '  '));
   });
-
-  fs.writeFileSync(path.join(opts.pathOut, 'targets.json'), JSON.stringify(targets, null, '  '));
 }
 
 function outputAnimationJSON(opts, json, animationData) {

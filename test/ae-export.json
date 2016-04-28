@@ -9,7 +9,7 @@
   "isProfessionalVersion": true,
   "isoLanguage": "en_US",
   "language": 1612,
-  "memoryInUse": 376844288,
+  "memoryInUse": 527863808,
   "saveProjectOnCrash": true,
   "version": "13.7x124",
   "project": {
@@ -18,7 +18,7 @@
     "footageTimecodeDisplayStartType": 2012,
     "framesCountType": 2414,
     "numItems": 4,
-    "revision": 2033,
+    "revision": 2255,
     "timeDisplayType": 1812,
     "items": [
       {
@@ -53,9 +53,8 @@
           1
         ],
         "selected": true,
-        "selectedLayers": [],
-        "selectedProperties": [],
         "shutterAngle": 180,
+        "time": 0.26666666666667,
         "typeName": "Composition",
         "usedIn": [],
         "width": 400,
@@ -85,9 +84,10 @@
             "propertyType": "NAMED_GROUP",
             "quality": 4414,
             "samplingQuality": 4612,
-            "selectedProperties": [],
+            "selected": true,
             "stretch": 100,
             "threeDLayer": true,
+            "time": 0.26666666666667,
             "trackMatteType": 4812,
             "width": 500,
             "properties": {
@@ -210,9 +210,9 @@
                   "selectedKeys": [],
                   "unitsText": "pixels",
                   "value": [
-                    200,
-                    1258,
-                    1290
+                    175.442929716553,
+                    -192.257998802426,
+                    753.715438883669
                   ],
                   "keyframes": [
                     [
@@ -241,7 +241,7 @@
                           "type": "linear",
                           "temporalEase": [
                             {
-                              "speed": 5254.47870473702,
+                              "speed": 5601.95746770307,
                               "influence": 16.666666667
                             }
                           ],
@@ -262,31 +262,31 @@
                       ],
                       {
                         "easeIn": {
-                          "type": "linear",
+                          "type": "bezier",
                           "temporalEase": [
                             {
-                              "speed": 5254.47870473702,
-                              "influence": 16.666666667
+                              "speed": 0,
+                              "influence": 33.333333
                             }
                           ],
                           "spatialTangent": [
                             0,
-                            179.072158813477,
-                            246.271942138672
+                            -20.9278430938721,
+                            566.27197265625
                           ]
                         },
                         "easeOut": {
-                          "type": "linear",
+                          "type": "bezier",
                           "temporalEase": [
                             {
-                              "speed": 2622.11621881652,
-                              "influence": 16.666666667
+                              "speed": 0,
+                              "influence": 33.333333
                             }
                           ],
                           "spatialTangent": [
                             0,
-                            -210.256683349609,
-                            -289.158996582031
+                            13.2039480209351,
+                            -357.276428222656
                           ]
                         }
                       }
@@ -303,7 +303,7 @@
                           "type": "linear",
                           "temporalEase": [
                             {
-                              "speed": 2622.11621881652,
+                              "speed": 2487.6239740649,
                               "influence": 16.666666667
                             }
                           ],
@@ -470,7 +470,7 @@
                   "propertyValueType": "OneD",
                   "selectedKeys": [],
                   "unitsText": "degrees",
-                  "value": -76,
+                  "value": -55.0344827586207,
                   "keyframes": [
                     [
                       0,
@@ -538,7 +538,7 @@
                   "propertyValueType": "OneD",
                   "selectedKeys": [],
                   "unitsText": "degrees",
-                  "value": 67,
+                  "value": 48.5172413793103,
                   "keyframes": [
                     [
                       0,
@@ -627,8 +627,10 @@
                   "propertyIndex": 11,
                   "propertyType": "PROPERTY",
                   "propertyValueType": "OneD",
+                  "selected": true,
                   "selectedKeys": [],
                   "unitsText": "percent",
+                  "value": 36.5539160389513,
                   "keyframes": [
                     [
                       0,
@@ -644,11 +646,11 @@
                           ]
                         },
                         "easeOut": {
-                          "type": "linear",
+                          "type": "bezier",
                           "temporalEase": [
                             {
-                              "speed": 150,
-                              "influence": 16.666666667
+                              "speed": -1.07434248964864,
+                              "influence": 61.0533931994991
                             }
                           ]
                         }
@@ -659,11 +661,11 @@
                       100,
                       {
                         "easeIn": {
-                          "type": "linear",
+                          "type": "bezier",
                           "temporalEase": [
                             {
-                              "speed": 150,
-                              "influence": 16.666666667
+                              "speed": 4.14468416805344,
+                              "influence": 77.3860098565178
                             }
                           ]
                         },
