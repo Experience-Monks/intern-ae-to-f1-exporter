@@ -2,6 +2,7 @@
   "name": "ae-to-f1",
   "version": "1.0.0",
   "description": "This is an After Effects to F1 exporter",
+  "private": true,
   "main": "src/index.js",
   "license": "MIT",
   "author": {
@@ -20,6 +21,10 @@
     "serialize-javascript": "^1.2.0"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.3.0",
     "budo": "^8.1.0",
     "f1-dom": "^8.0.0",
     "nodemon": "^1.9.1"
