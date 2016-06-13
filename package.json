@@ -46,10 +46,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/mikkoh/ae-to-f1.git"
+    "url": "git://github.com/mikkoh/ae-to-f1-exporter.git"
   },
-  "homepage": "https://github.com/mikkoh/ae-to-f1",
+  "homepage": "https://github.com/mikkoh/ae-to-f1-exporter",
   "bugs": {
-    "url": "https://github.com/mikkoh/ae-to-f1/issues"
+    "url": "https://github.com/mikkoh/ae-to-f1-exporter/issues"
   }
 }
