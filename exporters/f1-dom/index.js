@@ -7,6 +7,7 @@ var aeToF1 = require('../../src/');
 var getTargets = require('../../src/getTargets');
 var getHTML = require('./getHTML');
 var copyAssetsFromTargets = require('../../src/copyAssetsFromTargets');
+var outputAnimationJSON = require('../../src/exporter/outputAnimationJSON');
 
 module.exports = function(opts) {
   if(opts.pathJSON === undefined) {
@@ -45,11 +46,6 @@ function outputTargets(opts, json, animationData) {
 
     fs.writeFileSync(path.join(opts.pathOut, 'targets.json'), JSON.stringify(targets, null, '  '));
   });
-}
-
-function outputAnimationJSON(opts, json, animationData) {
-  // output animation data
-  fs.writeFileSync(path.join(opts.pathOut, 'animation.json'), JSON.stringify(animationData, null, '  '));
 }
 
 function outputIndexJS(opts, json, animationData) {

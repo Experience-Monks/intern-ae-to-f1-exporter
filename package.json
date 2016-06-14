@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "This is an After Effects to F1 exporter",
   "private": true,
-  "main": "src/index.js",
+  "main": "index.js",
+  "bin": {
+    "ae-to-f1": "cli.js"
+  },
   "license": "MIT",
   "author": {
     "name": "Mikko Haapoja",
@@ -18,6 +21,7 @@
     "es6-template-strings": "^2.0.0",
     "f1-dom": "^8.0.2",
     "fs-extra": "^0.26.7",
+    "inquirer": "^1.0.3",
     "serialize-javascript": "^1.2.0"
   },
   "devDependencies": {
@@ -38,6 +42,7 @@
     ]
   },
   "scripts": {
+    "test-cli": "node cli.js test/ae-export.json test/cli/test-f1-dom f1-dom && budo test/cli/frontend.js -d test/cli/test-f1-dom --live --open",
     "test-f1-dom": "nodemon test/f1-dom/ --ignore test/f1-dom/test-f1-dom/ --ignore test/f1-dom/frontend.js",
     "test-react-f1": "nodemon test/react-f1/ --ignore test/react-f1/test-react-f1/ --ignore test/react-f1/frontend.js"
   },

@@ -7,6 +7,7 @@ var aeToF1 = require('../../src/');
 var getTargets = require('../../src/getTargets');
 var getHTML = require('./getHTML');
 var copyAssetsFromTargets = require('../../src/copyAssetsFromTargets');
+var outputAnimationJSON = require('../../src/exporter/outputAnimationJSON');
 
 module.exports = function(opts) {
   if(opts.pathJSON === undefined) {
@@ -23,7 +24,6 @@ module.exports = function(opts) {
   // convert after effects json data to something useable
   var animationData = aeToF1(json);
 
-  outputAnimationJSON(opts, json, animationData);
   outputTargets(opts, json, animationData);
   outputIndexJS(opts, json, animationData);
 };
