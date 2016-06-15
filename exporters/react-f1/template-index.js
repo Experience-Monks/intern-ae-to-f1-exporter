@@ -22,5 +22,5 @@ module.exports = function(props) {
     props
   );
 
-  return ${jsx};
+  ${jsx};
 };

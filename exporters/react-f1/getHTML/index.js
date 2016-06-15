@@ -35,27 +35,35 @@ module.exports = function(jsonAE) {
   // The default camera is apparently the 50mm camera according to other documentation
   PERSPECTIVE = VIEW_PORT_WIDTH / (FILM_WIDTH/FOCAL_LENGTH);
 
-  var styleContainer = {
-    width: composition.width,
-    height: composition.height,
-    perspective: PERSPECTIVE,
-    WebkitPerspective: PERSPECTIVE,
-    MozPerspective: PERSPECTIVE,
-    WebkitTransformStyle: 'preserve-3d',
-    MozTransformStyle: 'preserve-3d',
-    transformStyle: 'preserve-3d',
-    WebkitTransformOrigin: '50% 50%',
-    MozTransformOrigin: '50% 50%',
-    transformOrigin: '50% 50%'
-  };
+  return html && `
+  var styleContainer = Object.assign(
+    props.style,
+    {
+      width: ${composition.width},
+      height: ${composition.height},
+      perspective: ${PERSPECTIVE},
+      WebkitPerspective: ${PERSPECTIVE},
+      MozPerspective: ${PERSPECTIVE},
+      WebkitTransformStyle: 'preserve-3d',
+      MozTransformStyle: 'preserve-3d',
+      transformStyle: 'preserve-3d',
+      WebkitTransformOrigin: '50% 50%',
+      MozTransformOrigin: '50% 50%',
+      transformOrigin: '50% 50%'
+    }
+  );
 
-  return html && "<ReactF1\n    {...props}\n    style={" + JSON.stringify(styleContainer) + "}\n  > \n" +
-    html
-    .map(function(tag) {
-      return "    " + tag + " \n";
-    })
-    .join('') +
-  "  </ReactF1>";
+  return <ReactF1 
+    {...props}
+    style={styleContainer}
+  >
+  ` + 
+  html
+  .map(function(tag) {
+    return "    " + tag + " \n";
+  })
+  .join('') +
+  `</ReactF1>`;
 
   function addToHTMLFromSource(layer, i) {
     html = html || [];

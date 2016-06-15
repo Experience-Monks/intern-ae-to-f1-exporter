@@ -24,6 +24,7 @@ module.exports = function(opts) {
   // convert after effects json data to something useable
   var animationData = aeToF1(json);
 
+  outputAnimationJSON(opts, json, animationData);
   outputTargets(opts, json, animationData);
   outputIndexJS(opts, json, animationData);
 };
@@ -45,11 +46,6 @@ function outputTargets(opts, json, animationData) {
 
     fs.writeFileSync(path.join(opts.pathOut, 'targets.json'), JSON.stringify(targets, null, '  '));
   });
-}
-
-function outputAnimationJSON(opts, json, animationData) {
-  // output animation data
-  fs.writeFileSync(path.join(opts.pathOut, 'animation.json'), JSON.stringify(animationData, null, '  '));
 }
 
 function outputIndexJS(opts, json, animationData) {
