@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var inquirer = require('inquirer');
 var path = require('path');
 var fs = require('fs');
@@ -25,8 +27,6 @@ const QUESTION_EXPORTER = {
     'f1-dom'
   ]
 };
-
-#!/usr/bin/env node
 
 var args = process.argv.slice(2);
 var questions = [];

@@ -9,12 +9,16 @@ module.exports = function(layer, isStart) {
   
   Object.keys(PROPERTIES).forEach(function(propertyName) {
     var property = layer.properties.Transform[ propertyName ];
-    var keyframes = property.keyframes;
 
-    if(keyframes.length > 1) {
-      rVal.animated[ PROPERTIES[ propertyName ] ] = getKeyFrames(property);
-    } else {
-      rVal.static[ PROPERTIES[ propertyName ] ] = keyframes[ 0 ][ 1 ];
+    // if a layer isn't 3d it wont have z-rotation
+    if(property) {
+      var keyframes = property.keyframes;
+
+      if(keyframes.length > 1) {
+        rVal.animated[ PROPERTIES[ propertyName ] ] = getKeyFrames(property);
+      } else {
+        rVal.static[ PROPERTIES[ propertyName ] ] = keyframes[ 0 ][ 1 ];
+      }
     }
   });
 

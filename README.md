@@ -1,4 +1,4 @@
-# ae-to-f1
+# ae-to-f1-exporter
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
@@ -11,6 +11,31 @@ When using this exporter it's a two step process where you first run `ae-to-json
 ## Usage
 
 [![NPM](https://nodei.co/npm/ae-to-f1.png)](https://www.npmjs.com/package/ae-to-f1)
+
+### Usage CLI
+
+Install globally:
+```bash
+$ npm i ae-to-f1-exporter -g
+```
+
+Also install `ae-to-json-cli` globally:
+```bash
+$ npm i ae-to-json-cli -g
+```
+
+With After Effects open on the projec you'd like to export do the following commands:
+```bash
+$ ae-to-json > output.json
+```
+
+This JSON file will be used by the `ae-to-f1` exporter by running the following:
+```bash
+$ ae-to-f1 output.json example-ui f1-dom
+```
+
+
+### Usage API
 
 When using this exporter you should use one of the "flavours" of `f1` by using one of the following
 

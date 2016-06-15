@@ -9,27 +9,30 @@ module.exports = function(json) {
   var compositions = getCompositions(json);
 
   return compositions.map(function(comp) {
-    var rVal;
     var stateNames = getStateNamesFromComp(comp);
-    var bi = compositions.reduce(function(bi, comp) {
-      var otherStateNames = getStateNamesFromComp(comp);
-      var isBiValue = (stateNames.to === otherStateNames.from && stateNames.from === otherStateNames.to);
-
-      if(isBiValue) {
-        bi = false;
-      }
-
-      return bi;
-    }, true);
-    var fromState;
-    var toState;
+    var isNotBi;
+    var rVal;
 
     // is this a transition composition
     if(stateNames) {
+      isNotBi = compositions.reduce(function(isNotBi, comp) {
+        var otherStateNames;
+
+        if(!isNotBi) {
+          otherStateNames = getStateNamesFromComp(comp);
+
+          if(otherStateNames) {
+            isNotBi = (stateNames.to === otherStateNames.from && stateNames.from === otherStateNames.to);
+          }
+        }
+
+        return isNotBi;
+      }, false);
+
       rVal = {
         from: stateNames.from,
         to: stateNames.to,
-        bi: bi,
+        bi: !isNotBi,
         duration: comp.duration,
         animation: getAnimations(comp)
       };

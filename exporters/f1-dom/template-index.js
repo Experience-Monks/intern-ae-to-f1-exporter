@@ -4,7 +4,9 @@ var targets = require('./targets');
 var aeToF1Dom = require('ae-to-f1/f1-dom/');
 
 module.exports = function(opts) {
+  opts = opts || {};
   opts.assetPath = opts.assetPath || 'assets/';
+  opts.el = opts.el || document.body;
 
   var html = ${html};
 
@@ -16,7 +18,7 @@ module.exports = function(opts) {
   opts = Object.assign(
     {},
     {
-      el: document.body,
+      el: opts.el,
       states: aeToF1Dom.getStates(opts),
       transitions: aeToF1Dom.getTransitions(opts)
     },
