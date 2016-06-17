@@ -1,11 +1,15 @@
 var getCompositions = require('./util/getCompositions');
 var getStateNamesFromComp = require('./util/getStateNamesFromComp');
 var getAnimations = require('./getAnimations');
+var aeTemporalToCubicEase = require('ae-temporal-to-cubic-ease');
 
 // compositions should be named fromName_to_toName
 // where fromName is the start state
 // where toName is the end state
 module.exports = function(json) {
+  // this will add key frame ease info to the json in cubic form
+  json = aeTemporalToCubicEase(json);
+
   var compositions = getCompositions(json);
 
   return compositions.map(function(comp) {
