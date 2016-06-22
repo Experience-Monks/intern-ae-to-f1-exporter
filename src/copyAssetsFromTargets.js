@@ -31,5 +31,8 @@ module.exports = function(targets, pathOutFolder, callback) {
     }
   }); 
 
-  async.each(commands, child_process.exec, callback);
+  commands.forEach(function(command) {
+    child_process.execSync(command);
+  });
+  if(callback) callback();
 };
