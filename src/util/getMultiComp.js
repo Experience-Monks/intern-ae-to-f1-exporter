@@ -1,6 +1,6 @@
 module.exports = function(json) {
 	if(!json) throw new Error('A json file is required');
-	if(!json.project) thrown new Error('Json input is not in the correct format');
+	if(!json.project) throw new Error('Json input is not in the correct format');
 
 	var project = json.project;
 	var comps = [];
