@@ -5,7 +5,7 @@ module.exports = function(json) {
 	var project = json.project;
 	var comps = [];
 
-	//find top level folder structure
+	// find top level folder structure
 	project.items.forEach(function(item) {
 		
 		if(item.typeName === 'Folder') {
@@ -16,7 +16,11 @@ module.exports = function(json) {
 						foundComponent = false;
 					}
 				});
-				comps.push(item);
+				if(foundComponent) {
+					item.items.forEach(function(item) {
+						comps.push(item);
+					});	
+				} 
 			}
 		}
 	});
