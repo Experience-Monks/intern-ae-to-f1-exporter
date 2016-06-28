@@ -53,17 +53,19 @@ module.exports = function(jsonAE) {
     }
   );
 
-  return <ReactF1 
-    {...props}
-    style={styleContainer}
-  >
+  return ( 
+    <ReactF1 
+      {...props}
+      style={styleContainer}
+    >
   ` + 
   html
   .map(function(tag) {
-    return "    " + tag + " \n";
+    return '    ' + tag + ' \n';
   })
-  .join('') +
-  `</ReactF1>`;
+  .join('  ') +
+  `    </ReactF1>
+  )`;
 
   function addToHTMLFromSource(layer, i) {
     html = html || [];
@@ -74,14 +76,17 @@ module.exports = function(jsonAE) {
       case '.gif':
         html.push(
           '<img ' + 
-          'data-f1="' + getName(i) + '" ' +
-          'src={assetPath + \'' + path.basename(layer.source)  + '\'} ' + 
-          'width={' + layer.width  + '} ' + 
-          'height={' + layer.height  + '} ' + 
-          'style={{position: "absolute", left: 0, top: 0}}' +
+          'data-f1=\'' + getName(i) + '\' ' +
+          'src={assetPath + \'' + path.basename(layer.source) + '\'} ' + 
+          'role=\'presentation\' ' + 
+          'width={' + layer.width + '} ' + 
+          'height={' + layer.height + '} ' + 
+          'style={{position: \'absolute\', left: 0, top: 0}}' +
           ' />'
         );
-      break;
+        break;
+      default: 
+        break;
     }
   }
 };

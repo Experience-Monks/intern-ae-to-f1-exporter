@@ -49,7 +49,7 @@ module.exports = function(jsonAE) {
     'transform-origin: 50% 50%'
   ];
 
-  return html && "'<div style=\"" + styleContainer.join('; ') + "\">' +\n" +
+  return html && "\n  '<div style=\"" + styleContainer.join('; ') + "\">' +\n" +
     html
     .map(function(tag) {
       return "    '" + tag + "' +\n";
@@ -67,9 +67,10 @@ module.exports = function(jsonAE) {
         html.push(
           '<img ' + 
           'data-f1="' + getName(i) + '" ' +
-          'src="\' + opts.assetPath + \'' + path.basename(layer.source)  + '" ' + 
-          'width="' + layer.width  + '" ' + 
-          'height="' + layer.height  + '" ' + 
+          'role="presentation" ' + 
+          'src="\' + opts.assetPath + \'' + path.basename(layer.source) + '" ' + 
+          'width="' + layer.width + '" ' + 
+          'height="' + layer.height + '" ' + 
           'style="position: absolute; left: 0px; top: 0px;" ' +
           ' />'
         );
