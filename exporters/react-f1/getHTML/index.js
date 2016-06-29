@@ -1,6 +1,6 @@
 var getTransitionCompositions = require('../../../src/util/getTransitionCompositions');
 var getTargetName = require('../../../src/util/getTargetName');
-var path = require('path');
+var addToHTMLFromSource = require('../../utils/addToHTMLFromSource');
 
 module.exports = function(jsonAE) {
   // the following calculations were researched from
@@ -23,7 +23,7 @@ module.exports = function(jsonAE) {
 
     composition.layers.forEach(function(layer, i) {
       if(layer.source) {
-        addToHTMLFromSource(layer, i);  
+        addToHTMLFromSource(layer, i, html);  
       }
     });
   }
@@ -66,27 +66,4 @@ module.exports = function(jsonAE) {
   .join('  ') +
   `    </ReactF1>
   )`;
-
-  function addToHTMLFromSource(layer, i) {
-    html = html || [];
-
-    switch(path.extname(layer.source).toLowerCase()) {
-      case '.jpg':
-      case '.png':
-      case '.gif':
-        html.push(
-          '<img ' + 
-          'data-f1=\'' + getName(i) + '\' ' +
-          'src={assetPath + \'' + path.basename(layer.source) + '\'} ' + 
-          'role=\'presentation\' ' + 
-          'width={' + layer.width + '} ' + 
-          'height={' + layer.height + '} ' + 
-          'style={{position: \'absolute\', left: 0, top: 0}}' +
-          ' />'
-        );
-        break;
-      default: 
-        break;
-    }
-  }
 };
