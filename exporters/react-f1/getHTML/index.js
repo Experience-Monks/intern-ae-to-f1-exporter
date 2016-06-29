@@ -23,7 +23,7 @@ module.exports = function(jsonAE) {
 
     composition.layers.forEach(function(layer, i) {
       if(layer.source) {
-        addToHTMLFromSource(layer, i, html);  
+        addToHTMLFromSource(layer, i, html, getName);  
       }
     });
   }

@@ -1,6 +1,6 @@
 var path = require('path');
 
-module.exports = function(layer, i, html) {
+module.exports = function(layer, i, html, getName) {
   html = html || [];
   switch(path.extname(layer.source).toLowerCase()) {
     case '.jpg':
