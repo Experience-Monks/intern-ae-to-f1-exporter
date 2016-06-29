@@ -14,7 +14,7 @@ module.exports = function(jsonAE) {
   var compositions = getTransitionCompositions(jsonAE);
   var composition = compositions[ 0 ];
   var getName;
-  var html;
+  var html = [];
   
   var fileName;
 
@@ -23,7 +23,7 @@ module.exports = function(jsonAE) {
 
     composition.layers.forEach(function(layer, i) {
       if(layer.source) {
-        addToHTMLFromSource(layer, i, html, getName);  
+        html.push(addToHTMLFromSource(layer, i, getName));  
       }
     });
   }
