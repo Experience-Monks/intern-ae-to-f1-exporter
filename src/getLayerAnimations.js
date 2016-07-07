@@ -15,7 +15,7 @@ module.exports = function(layer, isStart) {
       var keyframes = property.keyframes;
 
       if(keyframes.length > 1) {
-        rVal.animated[ PROPERTIES[ propertyName ] ] = getKeyFrames(property);
+        rVal.animated[ PROPERTIES[ propertyName ] ] = getKeyFrames(property, propertyName);
       } else {
         rVal.static[ PROPERTIES[ propertyName ] ] = keyframes[ 0 ][ 1 ];
       }
@@ -29,7 +29,7 @@ module.exports = function(layer, isStart) {
 
 
 
-function getKeyFrames(property) {
+function getKeyFrames(property, propertyName) {
   var keyframes = property.keyframes;
 
   return keyframes.map(function(keyframe, i) {
@@ -166,20 +166,21 @@ function getKeyFrames(property) {
           resolveToNonArrayIfPossible(bezierIn.y), 
           resolveToNonArrayIfPossible(bezierOut.x), 
           resolveToNonArrayIfPossible(bezierOut.y) 
-        ]
+        ],
+        propertyName
       ];
     // this is the last keyframe
     } else {
       out = [
         timeCurrent,
-        valueCurrent
+        valueCurrent,
+        propertyName
       ];
 
       if(easeCurrent.easeOut === 'hold') {
         out.push('hold');
       }
     }
-
     return out;
   });
 }
