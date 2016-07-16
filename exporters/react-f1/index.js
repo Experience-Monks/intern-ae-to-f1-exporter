@@ -76,7 +76,7 @@ function outputIndexJS(opts, json, animationData) {
   var templateIndex = fs.readFileSync(path.join(__dirname, 'template-index.js'));
   
   var outIndex = template(templateIndex, {
-    jsx: getHTML(json)
+    jsx: getHTML(json, opts)
   });
 
   fs.writeFileSync(path.join(opts.pathOut, 'index.js'), outIndex);

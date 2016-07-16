@@ -13,7 +13,7 @@ module.exports = function(json) {
     rVal = composition.layers
     .reduce(function(rVal, layer, i) {
       rVal[ getName(i) ] = {
-        src: layer.source,
+        src: changeSource(layer.source),
         width: layer.width,
         height: layer.height
       };
@@ -24,3 +24,13 @@ module.exports = function(json) {
 
   return rVal;
 };
+
+function changeSource(src) {
+  var extension = src.split('.')[1];
+  switch(extension) {
+    case 'ai':
+      return  src.split('.')[0] + '.svg';
+    default:
+      return src;
+  }
+}

@@ -2,7 +2,7 @@ var getTransitionCompositions = require('../../../src/util/getTransitionComposit
 var getTargetName = require('../../../src/util/getTargetName');
 var addToHTMLFromSource = require('../../utils/addToHTMLFromSource');
 
-module.exports = function(jsonAE) {
+module.exports = function(jsonAE, opts) {
   // the following calculations were researched from
   // http://www.turbodrive.tv/blog/after-effects-to-css-3d-workflow-part-2-transposition/
   // The default camera is apparently the 50mm camera according to other documentation
@@ -23,7 +23,7 @@ module.exports = function(jsonAE) {
 
     composition.layers.forEach(function(layer, i) {
       if(layer.source) {
-        html.push(addToHTMLFromSource(layer, i, getName));  
+        html.push(addToHTMLFromSource(layer, i, getName, opts));  
       }
     });
   }

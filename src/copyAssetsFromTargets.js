@@ -24,8 +24,6 @@ module.exports = function(targets, pathOutFolder, callback) {
     var inFile = target.src.split('(').join('\\(').split(')').join('\\)');
     var outFile = path.join(pathAssetOutFolder, path.basename(inFile));
 
-    console.log(inFile);
-
     if(inFile) {
       commands.push('cp ' + inFile + ' ' + outFile);  
     }
