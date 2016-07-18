@@ -1,9 +1,10 @@
 var path = require('path');
 var fs = require('fs');
 var child_process = require('child_process');
+var removeAttributes = require('remove-attributes');
 
 module.exports = function(layer, i, getName, opts) {
-  var format = path.extname(layer.source).toLowerCase()
+  var format = path.extname(layer.source).toLowerCase();
   var pathOut = opts.pathOut;
   var imageFormats = ['.jpeg', '.jpg', '.png', '.gif'];
   var videoFormats = ['.mp4', '.ogg', '.webm'];
@@ -31,7 +32,20 @@ module.exports = function(layer, i, getName, opts) {
     if(!resp) throw new Error(err);
     var svgFile = (pathOut + path.basename(resp)).replace(/\n/g, '');
     var fileContents = fs.readFileSync(svgFile, {encoding: 'utf-8'});
-    return '<svg version=' + fileContents.split('<svg version=')[1];
+
+    var svg = '<svg version=' + fileContents.split('<svg version=')[1];
+    svg = svg.replace('/xlink:/g', '');
+    svg = removeAttributes(svg, 
+      ['xmlns', 
+        'xmlns:xlink',
+        'xml:space',
+        'xlink'
+      ]);
+    if(opts.react) {
+      // todo
+      return svg;
+    }
+    else return svg;
   }
   else return '';
 };
