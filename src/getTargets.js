@@ -13,7 +13,7 @@ module.exports = function(json) {
     rVal = composition.layers
     .reduce(function(rVal, layer, i) {
       rVal[ getName(i) ] = {
-        src: changeSource(layer.source),
+        src: parseSource(changeSource(layer.source)),
         width: layer.width,
         height: layer.height
       };
@@ -33,4 +33,9 @@ function changeSource(src) {
     default:
       return src;
   }
+}
+
+function parseSource(src) {
+  let newSrc = decodeURI(src);
+  return newSrc.replace(/\ /g, '\\ ');
 }

@@ -1,7 +1,7 @@
 var path = require('path');
 var fs = require('fs');
-var child_process = require('child_process');
 var removeAttributes = require('remove-attributes');
+var getSvgFromIllustrator = require('./getSvgFromIllustrator');
 
 module.exports = function(layer, i, getName, opts) {
   var format = path.extname(layer.source).toLowerCase();
@@ -42,23 +42,11 @@ module.exports = function(layer, i, getName, opts) {
         'xlink'
       ]);
     if(opts.react) {
-      // todo
+      var reactSvg = 'todo';
       return svg;
     }
     else return svg;
   }
   else return '';
 };
-
-function getSvgFromIllustrator(src, pathOut) {
-  var args = [ src, __dirname + '/illustratorSvg.jsx', pathOut ];
-  var exec = `
-    osascript -e 'tell application "Adobe Illustrator"
-         do javascript "#include  ` + args[1] + `" with arguments {"` + args[0] + `","` + args[2] + `"}
-    end tell'
-  `;
-  var res = child_process.execSync(exec);
-  files = String.fromCharCode.apply(null, new Uint8Array(res.buffer));
-  return files;
-}
  

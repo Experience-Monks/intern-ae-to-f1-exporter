@@ -23,7 +23,8 @@
     "fs-extra": "^0.26.7",
     "inquirer": "^1.0.3",
     "remove-attributes": "^1.0.0",
-    "serialize-javascript": "^1.2.0"
+    "serialize-javascript": "^1.2.0",
+    "shell-escape": "^0.2.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",

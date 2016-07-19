@@ -3,7 +3,12 @@ illustratorExport(arguments[0], arguments[1]);
 
 function illustratorExport(src, outpath) {
   fileRef = new File(src);
-  app.open(fileRef);
+  if(app.documents.length === 0 ) {
+    app.open(fileRef);
+  }
+  else if(app.activeDocument.name.split('.')[0] !== src.split('/')[src.split('/').length -1].split('.')[0]) {
+    app.open(fileRef);
+  }
   // uncomment to suppress Illustrator warning dialogs
   app.userInteractionLevel = UserInteractionLevel.DONTDISPLAYALERTS;
   try {
