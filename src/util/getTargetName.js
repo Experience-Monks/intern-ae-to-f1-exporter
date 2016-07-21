@@ -7,7 +7,8 @@ module.exports = function(layers) {
   // we need to get if there are layers with the same name since After Effects allows for that
   var duplicates = layers.reduce(function(duplicates, layer, i) {
     var otherLayer;
-
+    // identify the layer name for svgs for example
+    layer.layerName = layer.name.replace(/ /g, '_');
     layers.forEach(function(otherLayer, j) {
       if(i !== j && layer.name === otherLayer.name) {
         if(!duplicates) {
