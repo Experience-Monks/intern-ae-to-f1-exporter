@@ -19,10 +19,8 @@ module.exports = function(opts) {
   if(opts.pathOut === undefined) {
     throw new Error('you must pass in `pathOut` where assets + js will be written');
   }
-
   // read in data needed for export
   var json = JSON.parse(fs.readFileSync(opts.pathJSON));
-
   var components = getMultiComp(json);
   // multiple components
   if(components.length > 1 ) {
@@ -49,10 +47,7 @@ module.exports = function(opts) {
         animationData[i]['animationLayer'] = animationLayers;
       });
     }
-    generateComp(json, opts, animationData)
-    // outputAnimationJSON(opts, json, animationData);
-    // outputTargets(opts, json, animationData, layerData);
-    // outputIndexJS(opts, json, animationData);    
+    generateComp(json, opts, animationData);
   }
 
 };
