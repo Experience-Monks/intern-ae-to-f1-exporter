@@ -2,6 +2,14 @@ var getCompositions = require('./util/getCompositions');
 var getStateNamesFromComp = require('./util/getStateNamesFromComp');
 var getAnimations = require('./getAnimations');
 
+function makeLayerNames(comp) {
+  var layers = [];
+  comp.layers.forEach(function(layer) {
+    layers.push(layer.name.replace(/ /g, '_'));
+  });
+  return layers;
+}
+
 // compositions should be named fromName_to_toName
 // where fromName is the start state
 // where toName is the end state
@@ -10,6 +18,8 @@ module.exports = function(json) {
 
   return compositions.map(function(comp) {
     var stateNames = getStateNamesFromComp(comp);
+    var layerNames = makeLayerNames(comp);
+
     var isNotBi;
     var rVal;
 
@@ -34,6 +44,7 @@ module.exports = function(json) {
         to: stateNames.to,
         bi: !isNotBi,
         duration: comp.duration,
+        layers: layerNames,
         animation: getAnimations(comp)
       };
     }

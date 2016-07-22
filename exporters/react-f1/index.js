@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 var serializeJS = require('serialize-javascript');
 var template = require('es6-template-strings');
+var arrNoDupe = require('../../src/util/arrNoDupe');
 
 var aeToF1 = require('../../src/');
 var getTargets = require('../../src/getTargets');
@@ -34,38 +35,63 @@ module.exports = function(opts) {
   else {
     // convert after effects json data to something useable
     var animationData = aeToF1(json);
-  
-      outputAnimationJSON(opts, json, animationData);
-      outputTargets(opts, json, animationData);
-      outputIndexJS(opts, json, animationData);    
+    generateComp(json, opts, animationData)    
   }
 
 };
 
-function generateIndividualComp(path, comp, json) {
-  json.project.items = comp.items;
-  var animationData = aeToF1(json);
-  var opts = {};
-  opts.pathOut = path + '/';
+/*
+  
+*/
 
+function generateComp(json, opts, animationData) {
+  var layerData = [];
   outputAnimationJSON(opts, json, animationData);
-  outputTargets(opts, json, animationData);
+  animationData.forEach(function(a) {
+    if(a.layers && a.layers.length > 1){
+      a.layers.forEach(function(l) {
+        layerData.push(l);
+      })
+    }
+  });
+  outputTargets(opts, json, animationData, layerData);
   outputIndexJS(opts, json, animationData);    
 }
 
-function outputTargets(opts, json, animationData) {
+function generateIndividualComp(path, comp, json, layerData) {
+  json.project.items = comp.items;
+  var animationData = aeToF1(json);
+  var layerData = [];
+  var opts = {};
+  opts.pathOut = path + '/';
+  outputAnimationJSON(opts, json, animationData);
+  animationData.forEach(function(a) {
+    if(a.layers && a.layers.length > 1){
+      a.layers.forEach(function(l) {
+        layerData.push(l);
+      })
+    }
+  });
+  layerData = arrNoDupe(layerData);
+  outputTargets(opts, json, animationData, layerData);
+  outputIndexJS(opts, json, animationData);    
+}
+
+function outputTargets(opts, json, animationData, layerData) {
   var targets = getTargets(json);
 
-  copyAssetsFromTargets(targets, opts.pathOut, function() {
-    Object.keys(targets).forEach(function(targetName) {
+  copyAssetsFromTargets(targets, opts.pathOut, layerData, animationData, function(layers) {
+    Object.keys(targets).forEach(function(targetName, i) {
       var target = targets[ targetName ];
-      var fileName;
-
-      if(target.src) {
-        fileName = path.basename(target.src);
-
+      var fileName = path.basename(target.src);
+      if(target.src && layerData.length > 0) {
+        var type = '.' + target.src.split('.')[1];
+        target.src = layerData[i].split('/')[0] + type;
+      }
+      else if(target.src) {
         target.src = fileName;
       }
+
     });
 
     fs.writeFileSync(path.join(opts.pathOut, 'targets.json'), JSON.stringify(targets, null, '  '));
