@@ -35,20 +35,6 @@ module.exports = function(opts) {
   else {
     // convert after effects json data to something useable
     var animationData = aeToF1(json);
-    if(animationData.length > 0){
-      var animationLayers = [];
-      animationData.forEach(function(animation, i) {
-        var layer = [];
-        animation.layers.forEach(function(l){
-          layer.push(l);
-        });
-        animationLayers.push({
-          index: i,
-          layers: layer
-        });
-        animationData[i]['animationLayer'] = animationLayers;
-      });
-    }
     generateComp(json, opts, animationData)    
   }
 
@@ -62,7 +48,7 @@ function generateComp(json, opts, animationData) {
   var layerData = [];
   outputAnimationJSON(opts, json, animationData);
   animationData.forEach(function(a) {
-    if(a.layers){
+    if(a.layers && a.layers.length > 1){
       a.layers.forEach(function(l) {
         layerData.push(l);
       })
@@ -80,7 +66,7 @@ function generateIndividualComp(path, comp, json, layerData) {
   opts.pathOut = path + '/';
   outputAnimationJSON(opts, json, animationData);
   animationData.forEach(function(a) {
-    if(a.layers){
+    if(a.layers && a.layers.length > 1){
       a.layers.forEach(function(l) {
         layerData.push(l);
       })
@@ -95,16 +81,14 @@ function outputTargets(opts, json, animationData, layerData) {
   var targets = getTargets(json);
 
   copyAssetsFromTargets(targets, opts.pathOut, layerData, animationData, function(layers) {
-    Object.keys(targets).forEach(function(targetName) {
+    Object.keys(targets).forEach(function(targetName, i) {
       var target = targets[ targetName ];
-      var fileName;
-      if(target.src && layerData) {
-        var newTarget = targetName.replace(/[_][0-9]$/g, '').replace(/ /g, '_');
-        newTarget = newTarget + '.' + target.src.split('.')[1];
-        target.src = newTarget;
+      var fileName = path.basename(target.src);
+      if(target.src && layerData.length > 0) {
+        var type = '.' + target.src.split('.')[1];
+        target.src = layerData[i].split('/')[0] + type;
       }
       else if(target.src) {
-        fileName = path.basename(target.src);
         target.src = fileName;
       }
 

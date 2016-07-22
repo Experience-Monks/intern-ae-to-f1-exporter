@@ -60,7 +60,7 @@ function generateComp(json, opts, animationData) {
   var layerData = [];
   outputAnimationJSON(opts, json, animationData);
   animationData.forEach(function(a) {
-    if(a.layers){
+    if(a.layers && a.layers.length > 0){
       a.layers.forEach(function(l) {
         layerData.push(l);
       })
