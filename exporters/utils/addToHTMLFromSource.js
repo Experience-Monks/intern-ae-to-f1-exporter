@@ -2,13 +2,20 @@ var path = require('path');
 var fs = require('fs');
 var removeAttributes = require('remove-attributes');
 var getSvgFromIllustrator = require('./getSvgFromIllustrator');
+var imageFormats = ['.jpeg', '.jpg', '.png', '.gif'];
+var videoFormats = ['.mp4', '.ogg', '.webm'];
+var illustratorFormats = ['.ai'];
+var textFormats = ['.otf', '.ttf', '.ttc'];
+var fontStyles = {
+  justification : 'justification', 
+  font: 'font-face', 
+  fontSize: 'font-size', 
+  fillColor: 'fill-color'
+};
 
 module.exports = function(layer, i, getName, opts) {
   var format = path.extname(layer.source).toLowerCase();
   var pathOut = opts.pathOut;
-  var imageFormats = ['.jpeg', '.jpg', '.png', '.gif'];
-  var videoFormats = ['.mp4', '.ogg', '.webm'];
-  var illustratorFormats = ['.ai'];
   if(imageFormats.indexOf(format) !== -1) {
     return '<img ' + 
       'data-f1=\'' + getName(i) + '\' ' +
@@ -47,6 +54,23 @@ module.exports = function(layer, i, getName, opts) {
     }
     else return svg;
   }
+  else if (textFormats.indexOf(format) !== -1) {
+    var styleContents = formatTextContents(layer.font);
+    return '<p ' + 
+    opts.react ? '{\'' + styleContents +'\'}' : styleContents +  
+    '>' + 
+    layer.font.text + 
+    '</p>';
+  }
   else return '';
 };
  
+function formatTextContents(font) {
+  var styleString;
+  Object.keys(font).forEach(function(key) {
+    if(fontStyles[key]) {
+      styleString += ' ' + fontStyles[key] + '="' + font[key]+ '"';
+    }
+  });
+  return styleString;
+}

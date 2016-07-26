@@ -95,12 +95,11 @@ function outputTargets(opts, json, animationData, layerData) {
     Object.keys(targets).forEach(function(targetName) {
       var target = targets[ targetName ];
       var fileName;
-      if(target.src && layers) {
-        
+      if(target.src && layerData.length > 0) {
+        var type = '.' + target.src.split('.')[1];
+        target.src = layerData[i].split('/')[0] + type;
       }
       else if(target.src) {
-        fileName = path.basename(target.src);
-
         target.src = fileName;
       }
 
