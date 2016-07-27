@@ -49,10 +49,12 @@ module.exports = function(layer, i, getName, opts) {
         'xlink'
       ]);
     if(opts.react) {
-      var reactSvg = 'todo';
-      return svg;
+      var reactSvg = svg.replace(/\n/g, '');
+      return `<InlineSVG 
+        src={\`${reactSvg}\`}
+      />`
     }
-    else return svg;
+    else return svg.replace(/\n/g, '');
   }
   else if (textFormats.indexOf(format) !== -1) {
     var styleContents = formatTextContents(layer.font);

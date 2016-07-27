@@ -3,6 +3,7 @@ var ReactF1 = require('react-f1');
 var animation = require('./animation');
 var targets = require('./targets');
 var aeToF1Dom = require('ae-to-f1/f1-dom/');
+var InlineSVG = require('svg-inline-react');
 
 module.exports = function(props) {
   var assetPath = props.assetPath || 'assets/';
