@@ -75,21 +75,23 @@ function generateIndividualComp(path, comp, json, layerData) {
   json.project.items = comp.items;
   var animationData = aeToF1(json);
   var layerData = [];
-  if(animationData.layers.length > 0){
-    animationData.layers.forEach(function(layer) {
-      layerData.push(layer);
-    });
-  }
   var opts = {};
   opts.pathOut = path + '/';
-
   outputAnimationJSON(opts, json, animationData);
+  animationData.forEach(function(a) {
+    if(a.layers && a.layers.length > 1){
+      a.layers.forEach(function(l) {
+        layerData.push(l);
+      })
+    }
+  });
+  layerData = arrNoDupe(layerData);
   outputTargets(opts, json, animationData, layerData);
   outputIndexJS(opts, json, animationData);    
 }
 
 function outputTargets(opts, json, animationData, layerData) {
-  var targets = getTargets(json);
+  var targets = getTargets(json, animationData);
 
   copyAssetsFromTargets(targets, opts.pathOut, layerData, animationData, function(layers) {
     Object.keys(targets).forEach(function(targetName, i) {
@@ -97,7 +99,7 @@ function outputTargets(opts, json, animationData, layerData) {
       var fileName;
       if(target.src && layerData.length > 0) {
         var type = '.' + target.src.split('.')[1];
-        target.src = layerData[i].split('/')[0] + type;
+        if(layerData[i]) target.src = layerData[i].split('/')[0] + type;
       }
       else if(target.src) {
         target.src = fileName;

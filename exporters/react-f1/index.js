@@ -82,7 +82,7 @@ function outputTargets(opts, json, animationData, layerData) {
       var fileName = path.basename(target.src);
       if(target.src.split('.')[1] === 'svg' && layerData.length > 0) {
         var type = '.' + target.src.split('.')[1];
-        target.src = layerData[i].split('/')[0] + type;
+        if(layerData[i]) target.src = layerData[i].split('/')[0] + type;
       }
       else if(target.src) {
         target.src = fileName;
