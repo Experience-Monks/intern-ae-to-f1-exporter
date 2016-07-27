@@ -22,7 +22,7 @@ module.exports = function(targets, pathOutFolder, layerData, animationData, call
   .forEach(function(nameTarget) {
     var target = targets[ nameTarget ];
     if(target.src) {
-      var inFile = target.src.split('(').join('\\(').split(')').join('\\)');
+      var inFile = target.src.replace(/~/g, process.env.HOME);
       var outFile = path.join(pathAssetOutFolder, path.basename(inFile));
       var isSvg = target.src.split('.')[1] === 'svg';
       var fileName = target.src.split('/')[target.src.split('/').length -1];

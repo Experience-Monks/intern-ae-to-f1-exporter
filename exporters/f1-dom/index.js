@@ -92,7 +92,7 @@ function outputTargets(opts, json, animationData, layerData) {
   var targets = getTargets(json);
 
   copyAssetsFromTargets(targets, opts.pathOut, layerData, animationData, function(layers) {
-    Object.keys(targets).forEach(function(targetName) {
+    Object.keys(targets).forEach(function(targetName, i) {
       var target = targets[ targetName ];
       var fileName;
       if(target.src && layerData.length > 0) {

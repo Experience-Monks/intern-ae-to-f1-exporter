@@ -3,7 +3,7 @@ var getFirstTransitionComposition = require('./util/getFirstTransitionCompositio
 var getTargetName = require('./util/getTargetName');
 var fs = require('fs');
 
-var fontPrefixes = ['.otf', '.ttf', '.ttc'];
+var fontPrefixes = ['.otf', '.ttf', '.ttc', '.dfont'];
 var osxPrefixes = ['/Library/Fonts/', '/System/Library/Fonts/'];
 // TODO windows system font prefixes
 // var windowsPrefixes...
@@ -18,14 +18,16 @@ module.exports = function(json) {
 
     rVal = composition.layers
     .reduce(function(rVal, layer, i) {
-      if(layer.src !== undefined) {
+      if(layer.source !== undefined) {
+        layer.anchor = getAnchorFromLayer(layer)
         rVal[ getName(i) ] = {
           src: parseSource(changeSource(layer.source)),
           width: layer.width,
-          height: layer.height
+          height: layer.height,
+          anchor: layer.anchor
         };  
       }
-      else if(layer.font) {
+      else if(Object.keys(layer.font).length > 0) {
         var fontPath;
         //get font from osx library location - TODO windows font copy
         osxPrefixes.forEach(function(pre) {
@@ -37,11 +39,13 @@ module.exports = function(json) {
         if(!fontPath) throw new Error('The text layer font face could not be found on your system');
         
         layer.source = fontPath;
+        layer.anchor = getAnchorFromLayer(layer)
         rVal[ getName(i)] = {
           src: parseSource(fontPath),
           font: layer.font,
           width: layer.width,
-          height: layer.height
+          height: layer.height,
+          anchor: layer.anchor
         }
       }
       
@@ -52,6 +56,10 @@ module.exports = function(json) {
 
   return rVal;
 };
+
+function getAnchorFromLayer(layer) {
+  return layer.properties.Transform['Anchor Point'].keyframes[0][1];
+}
 
 function changeSource(src) {
   var extension = src.split('.')[1];

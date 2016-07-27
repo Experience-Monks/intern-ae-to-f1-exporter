@@ -40,10 +40,6 @@ module.exports = function(opts) {
 
 };
 
-/*
-  
-*/
-
 function generateComp(json, opts, animationData) {
   var layerData = [];
   outputAnimationJSON(opts, json, animationData);
@@ -84,16 +80,14 @@ function outputTargets(opts, json, animationData, layerData) {
     Object.keys(targets).forEach(function(targetName, i) {
       var target = targets[ targetName ];
       var fileName = path.basename(target.src);
-      if(target.src && layerData.length > 0) {
+      if(target.src.split('.')[1] === 'svg' && layerData.length > 0) {
         var type = '.' + target.src.split('.')[1];
         target.src = layerData[i].split('/')[0] + type;
       }
       else if(target.src) {
         target.src = fileName;
       }
-
     });
-
     fs.writeFileSync(path.join(opts.pathOut, 'targets.json'), JSON.stringify(targets, null, '  '));
   });
 }
