@@ -57,22 +57,31 @@ module.exports = function(layer, i, getName, opts) {
     else return svg.replace(/\n/g, '');
   }
   else if (textFormats.indexOf(format) !== -1) {
-    var styleContents = formatTextContents(layer.font);
-    return '<p ' + 
-    opts.react ? '{\'' + styleContents +'\'}' : styleContents +  
-    '>' + 
-    layer.font.text + 
-    '</p>';
+    var styleContents = 
+      opts.react ? formatTextContentsReact(layer.font) : formatTextContents(layer.font);
+    return opts.react? `
+      <p 
+        style={{ ${styleContents} }}
+      >
+        ${'{\'' + layer.font.text + '\'}'} 
+      </p>
+    ` :
+    `<p ${styleContents} >${layer.font.text}</p>`;
   }
   else return '';
 };
  
 function formatTextContents(font) {
-  var styleString;
-  Object.keys(font).forEach(function(key) {
-    if(fontStyles[key]) {
-      styleString += ' ' + fontStyles[key] + '="' + font[key]+ '"';
-    }
-  });
+  var colorString = `rgb( ${font.fillColor[0] * 256}, ${font.fillColor[1] * 256} , ${font.fillColor[2] * 256} )`;
+  var styleString = `style="font-face: ${font.font}; font-size: ${font.fontSize}; color:${colorString};"`
+  .replace(/\n/g, '');
   return styleString;
+}
+function formatTextContentsReact(font) {
+  console.log(font);
+  return `
+    fontFace: '${font.font}',
+    fontSize: '${font.fontSize}',
+    color: 'rgb( ${font.fillColor[0] * 256}, ${font.fillColor[1] * 256} , ${font.fillColor[2] * 256} )'
+  `;
 }
