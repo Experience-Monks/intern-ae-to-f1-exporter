@@ -1,9 +1,14 @@
 var fs = require('fs');
+var os = require('os');
 
 module.exports = function(layerData, nameTarget, svgData, animationData) {
-  svgPath = svgData.replace(/~/g, process.env.HOME);
-  svgPath = svgPath.replace(/\n/g, '');
-  let outPath = svgPath.replace(svgPath.split('/')[svgPath.split('/').length -1], '');
+  let outPath;
+  svgPath = svgData.replace(/~/g, process.env.HOME).replace(/\n/g, '');
+  if(os.platform() === 'win32') { 
+    svgPath = svgPath.replace(/\//g, '\\');
+    outPath = svgPath.replace(svgPath.split('\\')[svgPath.split('\\').length -1], '');
+  }
+  else outPath = svgPath.replace(svgPath.split('/')[svgPath.split('/').length -1], '');
   let svg = fs.readFileSync(svgPath, 'utf-8');
   let div = document.createElement('div');
   div.innerHTML = svg;
