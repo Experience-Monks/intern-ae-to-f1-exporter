@@ -5,7 +5,7 @@ var shellEscape = require('shell-escape');
 var createLayeredSvg = require('./createLayeredSvg');
 
 var async = require('async');
-var fs = require('fs');
+var fs = require('fs-extra');
 
 // this function is meant to receive parsed targets and to 
 // copy all files to output folder
@@ -34,7 +34,10 @@ module.exports = function(targets, pathOutFolder, layerData, animationData, call
         if(!res) throw new Error('error converting ai file into svg');
       }
       else if(inFile && !isSvg) {
-        commands.push('cp ' + shellEscape([inFile]) + ' ' + shellEscape([outFile]));  
+        commands.push({
+          in: shellEscape([inFile]).replace(/'/g, ''), 
+          out: shellEscape([outFile]).replace(/'/g, '')
+        });
       }
       // transform svg into multiple svgs if there are layers and write the files
       if((res || isSvg) && layerData.length > 0) {
@@ -44,7 +47,7 @@ module.exports = function(targets, pathOutFolder, layerData, animationData, call
   }); 
   
   commands.forEach(function(command) {
-    child_process.execSync(command);
+    fs.copySync(command.in, command.out);
   });
   if(callback) callback(isLayered ? layerData : undefined);
 };
