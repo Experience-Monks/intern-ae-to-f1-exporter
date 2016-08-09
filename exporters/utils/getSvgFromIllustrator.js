@@ -15,6 +15,7 @@ module.exports = function getSvgFromIllustrator(src, pathOut) {
     `;  
     var res = child_process.execSync(exec);
     files = String.fromCharCode.apply(null, new Uint8Array(res.buffer));
+    files = files.replace(/~/g, process.env.HOME).replace(/\n/g, '');
   }
   else if(os.platform() === 'win32') {
     exec =  `"${__dirname + "\\"}ai.vbs"  "${args[0]}"  "${args[2]}" "${__dirname + "\\illustratorSvg.jsx"}`
@@ -22,7 +23,7 @@ module.exports = function getSvgFromIllustrator(src, pathOut) {
     files = args[2] + '/' + args[0].split('/')[args[0].split('/').length -1].replace(/[.]ai$/g, '.svg');
   }
   else throw new Error('os not suported for execution of illustrator scripting');
-  if(fs.accessSync(files) === undefined) {
+  if(fs.accessSync(files) !== undefined || fs.statSyncNoException(files) !== false) {
     return files;  
   }
   else throw new Error('error writing svg from ai file');
