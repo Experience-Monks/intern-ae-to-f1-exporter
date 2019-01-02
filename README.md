@@ -8,6 +8,9 @@ In other words the workflow for the exporter will be to export the After Effects
 
 When using this exporter it's a two step process where you first run `ae-to-json` after which you can run this exporter on the exporter JSON file.
 
+## Important
+This project is no longer maintained by Jam3 and was archived. If you want to unarchive it and contribute, please contact td@jam3.com
+
 ## Usage
 
 [![NPM](https://nodei.co/npm/ae-to-f1.png)](https://www.npmjs.com/package/ae-to-f1)
